@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gamezone Host - Sua Plataforma de Jogos</title>
+    <title>GameZone Host - Sua Plataforma de Jogos</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -14,7 +14,7 @@
         }
         
         body {
-            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            background: linear-gradient(135deg, #0a0a0a, #0d1b2a, #1b263b);
             color: #fff;
             min-height: 100vh;
             background-attachment: fixed;
@@ -23,8 +23,8 @@
         header {
             text-align: center;
             padding: 2rem 1rem;
-            background: rgba(0, 0, 0, 0.7);
-            border-bottom: 3px solid #4CAF50;
+            background: rgba(10, 10, 20, 0.95);
+            border-bottom: 3px solid #e63946;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
             position: relative;
             overflow: hidden;
@@ -33,14 +33,14 @@
         h1 {
             font-size: 2.8rem;
             margin-bottom: 0.5rem;
-            color: #4CAF50;
-            text-shadow: 0 0 15px rgba(76, 175, 80, 0.7);
+            color: #e63946;
+            text-shadow: 0 0 15px rgba(230, 57, 70, 0.7);
             font-weight: 800;
             letter-spacing: 1px;
         }
         
         .subtitle {
-            color: #e0e0e0;
+            color: #a8dadc;
             font-size: 1.2rem;
             max-width: 800px;
             margin: 0 auto;
@@ -57,8 +57,8 @@
             width: 100%;
             padding: 12px 45px 12px 20px;
             border-radius: 25px;
-            border: 2px solid #4CAF50;
-            background: rgba(0, 0, 0, 0.3);
+            border: 2px solid #e63946;
+            background: rgba(0, 0, 0, 0.4);
             color: white;
             font-size: 1rem;
             transition: all 0.3s ease;
@@ -66,9 +66,9 @@
         
         #search-input:focus {
             outline: none;
-            border-color: #66BB6A;
-            box-shadow: 0 0 15px rgba(76, 175, 80, 0.5);
-            background: rgba(0, 0, 0, 0.5);
+            border-color: #ef6c79;
+            box-shadow: 0 0 15px rgba(230, 57, 70, 0.5);
+            background: rgba(0, 0, 0, 0.6);
         }
         
         .search-icon {
@@ -76,7 +76,7 @@
             right: 15px;
             top: 50%;
             transform: translateY(-50%);
-            color: #4CAF50;
+            color: #e63946;
             cursor: pointer;
         }
         
@@ -88,17 +88,69 @@
             display: none;
         }
         
+        /* Menu de Navegação */
+        .nav-container {
+            background: rgba(10, 10, 20, 0.9);
+            padding: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #1d3557;
+        }
+        
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            list-style: none;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .nav-item {
+            position: relative;
+        }
+        
+        .nav-link {
+            color: #a8dadc;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: #e63946;
+            background: rgba(230, 57, 70, 0.1);
+        }
+        
+        .nav-link.active {
+            border-bottom: 2px solid #e63946;
+        }
+        
+        .content-section {
+            display: none;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+        
+        .content-section.active {
+            display: block;
+        }
+        
         .security-info {
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(10, 10, 20, 0.8);
             border-radius: 10px;
             padding: 2rem;
             margin: 2rem auto;
             max-width: 900px;
-            border-left: 4px solid #4CAF50;
+            border-left: 4px solid #e63946;
         }
         
         .security-info h2 {
-            color: #4CAF50;
+            color: #e63946;
             margin-bottom: 1.5rem;
             text-align: center;
         }
@@ -111,26 +163,32 @@
         }
         
         .security-card {
-            background: rgba(30, 30, 50, 0.7);
+            background: rgba(30, 30, 50, 0.8);
             padding: 1.5rem;
             border-radius: 10px;
             text-align: center;
             transition: transform 0.3s;
+            border: 1px solid #1d3557;
         }
         
         .security-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(230, 57, 70, 0.3);
         }
         
         .security-icon {
             font-size: 2.5rem;
-            color: #4CAF50;
+            color: #e63946;
             margin-bottom: 1rem;
         }
         
         .security-card h3 {
-            color: #4CAF50;
+            color: #e63946;
             margin-bottom: 0.5rem;
+        }
+        
+        .security-card p {
+            color: #a8dadc;
         }
         
         .games-grid {
@@ -138,33 +196,32 @@
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 2rem;
             margin: 2rem auto;
-            max-width: 1200px;
             padding: 1rem;
         }
         
         .game-card {
-            background: linear-gradient(145deg, #1e1e2e, #252535);
+            background: linear-gradient(145deg, #1d2d44, #1e3a5f);
             border-radius: 15px;
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-            border: 1px solid #33334d;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+            border: 1px solid #415a77;
         }
         
         .game-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(76, 175, 80, 0.3);
+            box-shadow: 0 15px 30px rgba(230, 57, 70, 0.4);
         }
         
         .game-image {
             width: 100%;
             height: 180px;
             overflow: hidden;
-            background: linear-gradient(45deg, #2a2a5a, #1a1a40);
+            background: linear-gradient(45deg, #1d3557, #457b9d);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #4CAF50;
+            color: #e63946;
             font-size: 3rem;
         }
         
@@ -186,7 +243,7 @@
         .game-title {
             font-size: 1.4rem;
             margin-bottom: 0.5rem;
-            color: #4CAF50;
+            color: #e63946;
         }
         
         .game-info {
@@ -194,11 +251,11 @@
             justify-content: space-between;
             margin-bottom: 1rem;
             font-size: 0.9rem;
-            color: #a0a0a0;
+            color: #a8dadc;
         }
         
         .game-description {
-            color: #c0c0c0;
+            color: #f1faee;
             margin-bottom: 1.5rem;
             font-size: 0.95rem;
             line-height: 1.5;
@@ -208,7 +265,7 @@
             display: block;
             text-align: center;
             padding: 0.8rem 1.5rem;
-            background: linear-gradient(to right, #4CAF50, #66BB6A);
+            background: linear-gradient(to right, #e63946, #ef6c79);
             color: white;
             text-decoration: none;
             border-radius: 8px;
@@ -217,8 +274,8 @@
         }
         
         .game-link:hover {
-            background: linear-gradient(to right, #66BB6A, #81C784);
-            box-shadow: 0 0 15px rgba(76, 175, 80, 0.5);
+            background: linear-gradient(to right, #ef6c79, #f2849b);
+            box-shadow: 0 0 15px rgba(230, 57, 70, 0.5);
         }
 
         /* Botão de Comentários */
@@ -228,15 +285,162 @@
             padding: 0.6rem;
             margin-top: 0.8rem;
             background: transparent;
-            border: 1px solid #4CAF50;
-            color: #4CAF50;
+            border: 1px solid #e63946;
+            color: #e63946;
             border-radius: 5px;
             cursor: pointer;
             transition: all 0.3s ease;
         }
         
         .comments-btn:hover {
-            background: rgba(76, 175, 80, 0.2);
+            background: rgba(230, 57, 70, 0.2);
+        }
+        
+        /* Sistema de Amigos */
+        .friends-section {
+            background: rgba(10, 10, 20, 0.8);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 1000px;
+            border: 2px solid #1d3557;
+        }
+        
+        .friends-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .friends-header h2 {
+            color: #e63946;
+            margin-bottom: 0.5rem;
+        }
+        
+        .friends-header p {
+            color: #a8dadc;
+        }
+        
+        .friends-search {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .friends-search input {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #457b9d;
+            border-radius: 5px;
+            background: #0a0a1a;
+            color: white;
+        }
+        
+        .friends-search button {
+            padding: 12px 20px;
+            background: #e63946;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .friends-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .friend-card {
+            background: rgba(30, 30, 50, 0.8);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid #1d3557;
+            transition: transform 0.3s;
+        }
+        
+        .friend-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(230, 57, 70, 0.3);
+        }
+        
+        .friend-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #1d3557, #457b9d);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: #e63946;
+            font-size: 2rem;
+        }
+        
+        .friend-name {
+            color: #e63946;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        
+        .friend-status {
+            color: #a8dadc;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .friend-actions {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+        
+        .friend-btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        
+        .btn-add {
+            background: #e63946;
+            color: white;
+        }
+        
+        .btn-add:hover {
+            background: #ef6c79;
+        }
+        
+        .btn-remove {
+            background: #457b9d;
+            color: white;
+        }
+        
+        .btn-remove:hover {
+            background: #5c94b8;
+        }
+        
+        .btn-message {
+            background: transparent;
+            border: 1px solid #e63946;
+            color: #e63946;
+        }
+        
+        .btn-message:hover {
+            background: rgba(230, 57, 70, 0.1);
+        }
+        
+        .friends-list {
+            margin-top: 2rem;
+        }
+        
+        .friends-list h3 {
+            color: #e63946;
+            margin-bottom: 1rem;
+            text-align: center;
         }
         
         /* Modal de Comentários */
@@ -248,7 +452,7 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.8);
+            background-color: rgba(0,0,0,0.9);
         }
         
         .comments-content {
@@ -258,7 +462,7 @@
             border-radius: 15px;
             width: 90%;
             max-width: 600px;
-            border: 2px solid #4CAF50;
+            border: 2px solid #e63946;
             position: relative;
             max-height: 80vh;
             overflow-y: auto;
@@ -273,7 +477,7 @@
         }
         
         .close-comments:hover {
-            color: #4CAF50;
+            color: #e63946;
         }
         
         .comments-header {
@@ -282,22 +486,27 @@
         }
         
         .comments-header h2 {
-            color: #4CAF50;
+            color: #e63946;
             margin-bottom: 5px;
+        }
+        
+        .comments-header p {
+            color: #a8dadc;
         }
         
         /* Formulário de Comentário */
         .comment-form {
             margin-bottom: 25px;
             padding: 15px;
-            background: rgba(30, 30, 50, 0.5);
+            background: rgba(30, 30, 50, 0.6);
             border-radius: 10px;
+            border: 1px solid #1d3557;
         }
         
         .comment-form textarea {
             width: 100%;
             padding: 12px;
-            border: 2px solid #415a77;
+            border: 2px solid #457b9d;
             border-radius: 5px;
             background: #0a0a1a;
             color: white;
@@ -308,16 +517,17 @@
         
         .comment-form button {
             padding: 10px 20px;
-            background: #4CAF50;
+            background: #e63946;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-weight: bold;
+            transition: background 0.3s;
         }
         
         .comment-form button:hover {
-            background: #66BB6A;
+            background: #ef6c79;
         }
         
         /* Lista de Comentários */
@@ -327,48 +537,48 @@
         }
         
         .comment-item {
-            background: rgba(30, 30, 50, 0.5);
+            background: rgba(30, 30, 50, 0.6);
             padding: 15px;
             border-radius: 8px;
             margin-bottom: 15px;
-            border-left: 3px solid #4CAF50;
+            border-left: 3px solid #e63946;
         }
         
         .comment-author {
             font-weight: bold;
-            color: #4CAF50;
+            color: #e63946;
             margin-bottom: 5px;
         }
         
         .comment-text {
-            color: #e0e0e0;
+            color: #f1faee;
             line-height: 1.5;
         }
         
         .comment-date {
             font-size: 0.8rem;
-            color: #a0a0a0;
+            color: #a8dadc;
             margin-top: 5px;
             text-align: right;
         }
         
         .no-comments {
             text-align: center;
-            color: #a0a0a0;
+            color: #a8dadc;
             padding: 20px;
         }
         
         .safety-tips {
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(10, 10, 20, 0.8);
             border-radius: 10px;
             padding: 2rem;
             margin: 2rem auto;
             max-width: 900px;
-            border-left: 4px solid #FF9800;
+            border-left: 4px solid #f2849b;
         }
         
         .safety-tips h2 {
-            color: #FF9800;
+            color: #f2849b;
             margin-bottom: 1.5rem;
             text-align: center;
         }
@@ -381,11 +591,12 @@
             margin-bottom: 1rem;
             padding-left: 2rem;
             position: relative;
+            color: #f1faee;
         }
         
         .tips-list li:before {
             content: "✓";
-            color: #4CAF50;
+            color: #e63946;
             position: absolute;
             left: 0;
             font-weight: bold;
@@ -395,9 +606,9 @@
             text-align: center;
             padding: 3rem 1rem;
             margin-top: 5rem;
-            background: rgba(0, 0, 0, 0.7);
-            border-top: 3px solid #4CAF50;
-            color: #a0a0a0;
+            background: rgba(10, 10, 20, 0.95);
+            border-top: 3px solid #e63946;
+            color: #a8dadc;
         }
         
         .footer-content {
@@ -413,11 +624,13 @@
         }
         
         .footer-links a {
-            color: #4CAF50;
+            color: #e63946;
             text-decoration: none;
+            transition: color 0.3s;
         }
         
         .footer-links a:hover {
+            color: #f2849b;
             text-decoration: underline;
         }
         
@@ -427,13 +640,18 @@
             top: 20px;
             right: 20px;
             padding: 10px 20px;
-            background: #4CAF50;
+            background: #e63946;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-weight: bold;
             z-index: 100;
+            transition: background 0.3s;
+        }
+        
+        .login-btn:hover {
+            background: #ef6c79;
         }
         
         .auth-modal {
@@ -444,7 +662,7 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.8);
+            background-color: rgba(0,0,0,0.9);
         }
         
         .auth-content {
@@ -454,7 +672,7 @@
             border-radius: 15px;
             width: 90%;
             max-width: 400px;
-            border: 2px solid #4CAF50;
+            border: 2px solid #e63946;
             position: relative;
         }
         
@@ -467,11 +685,11 @@
         }
         
         .close-auth:hover {
-            color: #4CAF50;
+            color: #e63946;
         }
         
         .auth-form h2 {
-            color: #4CAF50;
+            color: #e63946;
             margin-bottom: 20px;
             text-align: center;
         }
@@ -480,7 +698,7 @@
             width: 100%;
             padding: 12px;
             margin: 10px 0;
-            border: 2px solid #415a77;
+            border: 2px solid #457b9d;
             border-radius: 5px;
             background: #0a0a1a;
             color: white;
@@ -489,27 +707,33 @@
         .auth-form button {
             width: 100%;
             padding: 12px;
-            background: #4CAF50;
+            background: #e63946;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-weight: bold;
             margin-top: 10px;
+            transition: background 0.3s;
         }
         
         .auth-form button:hover {
-            background: #66BB6A;
+            background: #ef6c79;
         }
         
         .auth-switch {
             text-align: center;
             margin-top: 15px;
+            color: #a8dadc;
         }
         
         .auth-switch a {
-            color: #4CAF50;
+            color: #e63946;
             text-decoration: none;
+        }
+        
+        .auth-switch a:hover {
+            text-decoration: underline;
         }
         
         .user-menu {
@@ -519,8 +743,15 @@
             background: #1d2d44;
             border-radius: 5px;
             padding: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
             display: none;
+            border: 1px solid #e63946;
+            z-index: 1000;
+        }
+        
+        .user-menu p {
+            color: #f1faee;
+            margin-bottom: 10px;
         }
         
         .user-menu button {
@@ -532,6 +763,48 @@
             cursor: pointer;
             width: 100%;
             margin-top: 5px;
+            transition: background 0.3s;
+        }
+        
+        .user-menu button:hover {
+            background: #ef6c79;
+        }
+
+        /* Modal de Amigos */
+        .friends-modal {
+            display: none;
+            position: fixed;
+            z-index: 1002;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+        }
+        
+        .friends-modal-content {
+            background: #1d2d44;
+            margin: 5% auto;
+            padding: 25px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            border: 2px solid #e63946;
+            position: relative;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .close-friends {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .close-friends:hover {
+            color: #e63946;
         }
         
         @media (max-width: 768px) {
@@ -564,6 +837,15 @@
                 padding: 20px;
                 width: 95%;
             }
+            
+            .nav-menu {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            
+            .friends-grid {
+                grid-template-columns: 1fr;
+            }
         }
         
         @media (max-width: 480px) {
@@ -574,6 +856,15 @@
             h1 {
                 font-size: 1.8rem;
             }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .friends-search {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -582,7 +873,7 @@
         <button id="login-btn" class="login-btn">
             <i class="fas fa-user"></i> Entrar
         </button>
-        <h1><i class="fas fa-shield-alt"></i> GAMEZONE HOST</h1>
+        <h1><i class="fas fa-gamepad"></i> GAMEZONE HOST</h1>
         <p class="subtitle">Diversão garantida com segurança para você e seus amigos!</p>
         
         <!-- Barra de Busca -->
@@ -593,188 +884,173 @@
             </div>
         </div>
     </header>
-    
-    <div class="security-info">
-        <h2>Por que este site é seguro?</h2>
-        <div class="security-features">
-            <div class="security-card">
-                <div class="security-icon">
-                    <i class="fas fa-lock"></i>
+
+    <!-- Menu de Navegação -->
+    <nav class="nav-container">
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="#" class="nav-link active" data-section="home">
+                    <i class="fas fa-home"></i> Início
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link" data-section="games">
+                    <i class="fas fa-gamepad"></i> Jogos
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link" data-section="friends">
+                    <i class="fas fa-users"></i> Amigos
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link" data-section="profile">
+                    <i class="fas fa-user"></i> Perfil
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Seção Home -->
+    <section id="home" class="content-section active">
+        <div class="security-info">
+            <h2>Por que este site é seguro?</h2>
+            <div class="security-features">
+                <div class="security-card">
+                    <div class="security-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>Sem Downloads</h3>
+                    <p>Todos os jogos rodam diretamente no navegador, não é necessário baixar nada.</p>
                 </div>
-                <h3>Sem Downloads</h3>
-                <p>Todos os jogos rodam diretamente no navegador, não é necessário baixar nada.</p>
+                
+                <div class="security-card">
+                    <div class="security-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Links Verificados</h3>
+                    <p>Todos os links direcionam para sites confiáveis e conhecidos.</p>
+                </div>
+                
+                <div class="security-card">
+                    <div class="security-icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h3>Sem Cadastro</h3>
+                    <p>Não é necessário criar conta ou fornecer dados pessoais.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="games-grid">
+            <!-- Jogos serão carregados aqui -->
+        </div>
+
+        <div class="safety-tips">
+            <h2><i class="fas fa-exclamation-triangle"></i> Dicas de Segurança Online</h2>
+            <ul class="tips-list">
+                <li>Nunca forneça informações pessoais em sites de jogos</li>
+                <li>Crie senhas fortes e diferentes para cada site</li>
+                <li>Mantenha seu navegador e antivírus atualizados</li>
+                <li>Desconfie de promoções ou ofertas muito boas para serem verdade</li>
+                <li>Use uma rede Wi-Fi segura para jogar online</li>
+                <li>Verifique se o site possui conexão HTTPS (cadeado verde na barra de endereços)</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Seção Jogos -->
+    <section id="games" class="content-section">
+        <div class="games-grid">
+            <!-- Jogos serão carregados aqui -->
+        </div>
+    </section>
+
+    <!-- Seção Amigos -->
+    <section id="friends" class="content-section">
+        <div class="friends-section">
+            <div class="friends-header">
+                <h2><i class="fas fa-users"></i> Sistema de Amigos</h2>
+                <p>Conecte-se com outros jogadores e faça novos amigos!</p>
+            </div>
+
+            <div class="friends-search">
+                <input type="text" id="friend-search" placeholder="Buscar usuários...">
+                <button onclick="searchFriends()">
+                    <i class="fas fa-search"></i> Buscar
+                </button>
+            </div>
+
+            <div class="friends-grid" id="friends-results">
+                <!-- Resultados da busca serão mostrados aqui -->
+            </div>
+
+            <div class="friends-list">
+                <h3>Seus Amigos</h3>
+                <div class="friends-grid" id="friends-list">
+                    <!-- Lista de amigos será mostrada aqui -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Perfil -->
+    <section id="profile" class="content-section">
+        <div class="friends-section">
+            <div class="friends-header">
+                <h2><i class="fas fa-user"></i> Seu Perfil</h2>
+                <p>Gerencie suas informações e preferências</p>
             </div>
             
-            <div class="security-card">
-                <div class="security-icon">
-                    <i class="fas fa-shield-alt"></i>
+            <div class="friend-card">
+                <div class="friend-avatar">
+                    <i class="fas fa-user"></i>
                 </div>
-                <h3>Links Verificados</h3>
-                <p>Todos os links direcionam para sites confiáveis e conhecidos.</p>
-            </div>
-            
-            <div class="security-card">
-                <div class="security-icon">
-                    <i class="fas fa-user-shield"></i>
+                <h3 class="friend-name" id="profile-name">Visitante</h3>
+                <p class="friend-status" id="profile-email">Faça login para ver seu perfil</p>
+                <div class="friend-actions">
+                    <button class="friend-btn btn-message" onclick="editProfile()">
+                        <i class="fas fa-edit"></i> Editar
+                    </button>
                 </div>
-                <h3>Sem Cadastro</h3>
-                <p>Não é necessário criar conta ou fornecer dados pessoais.</p>
             </div>
-        </div>
-    </div>
-    
-    <div class="games-grid">
-        <!-- Jogo 1 - Subway Surfers -->
-        <div class="game-card" data-name="subway surfers">
-            <div class="game-image">
-                <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="Subway Surfers">
-            </div>
-            <div class="game-content">
-                <h3 class="game-title">Subway Surfers</h3>
-                <div class="game-info">
-                    <span><i class="fas fa-gamepad"></i> Ação</span>
-                    <span><i class="fas fa-shield-alt"></i> Seguro</span>
-                </div>
-                <p class="game-description">Corra pelos trilhos do metrô desviando de trens e obstáculos nesse jogo viciante.</p>
-                <a href="https://poki.com/br/g/subway-surfers" class="game-link" target="_blank">Jogar Agora</a>
-                <button class="comments-btn" onclick="openComments('subway-surfers')">
-                    <i class="fas fa-comments"></i> Comentários
-                </button>
-            </div>
-        </div>
-        
-        <!-- Jogo 2 - Slither.io -->
-        <div class="game-card" data-name="slitherio">
-            <div class="game-image">
-                <img src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="Slither.io">
-            </div>
-            <div class="game-content">
-                <h3 class="game-title">Slither.io</h3>
-                <div class="game-info">
-                    <span><i class="fas fa-gamepad"></i> Estratégia</span>
-                    <span><i class="fas fa-shield-alt"></i> Seguro</span>
-                </div>
-                <p class="game-description">Controle uma cobrinha, coma bolinhas e derrote outros jogadores para crescer.</p>
-                <a href="https://slither.io/" class="game-link" target="_blank">Jogar Agora</a>
-                <button class="comments-btn" onclick="openComments('slitherio')">
-                    <i class="fas fa-comments"></i> Comentários
-                </button>
-            </div>
-        </div>
-        
-        <!-- Jogo 3 - Minecraft -->
-        <div class="game-card" data-name="minecraft">
-            <div class="game-image">
-                <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="Minecraft Classic">
-            </div>
-            <div class="game-content">
-                <h3 class="game-title">Minecraft Classic</h3>
-                <div class="game-info">
-                    <span><i class="fas fa-gamepad"></i> Aventura</span>
-                    <span><i class="fas fa-shield-alt"></i> Seguro</span>
-                </div>
-                <p class="game-description">Construa e explore mundos infinitos com blocos neste jogo de sandbox.</p>
-                <a href="https://classic.minecraft.net/" class="game-link" target="_blank">Jogar Agora</a>
-                <button class="comments-btn" onclick="openComments('minecraft')">
-                    <i class="fas fa-comments"></i> Comentários
-                </button>
-            </div>
-        </div>
 
-        <!-- Jogo 4 - Among Us -->
-        <div class="game-card" data-name="among us">
-            <div class="game-image">
-                <img src="https://images.unsplash.com/photo-1593305841991-05c297ba4575?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="Among Us">
-            </div>
-            <div class="game-content">
-                <h3 class="game-title">Among Us</h3>
-                <div class="game-info">
-                    <span><i class="fas fa-gamepad"></i> Estratégia</span>
-                    <span><i class="fas fa-shield-alt"></i> Seguro</span>
+            <div class="friends-list">
+                <h3>Suas Estatísticas</h3>
+                <div class="security-features">
+                    <div class="security-card">
+                        <div class="security-icon">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <h3>Jogos Jogados</h3>
+                        <p id="stats-games">0</p>
+                    </div>
+                    
+                    <div class="security-card">
+                        <div class="security-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h3>Comentários</h3>
+                        <p id="stats-comments">0</p>
+                    </div>
+                    
+                    <div class="security-card">
+                        <div class="security-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Amigos</h3>
+                        <p id="stats-friends">0</p>
+                    </div>
                 </div>
-                <p class="game-description">Descubra quem é o impostor enquanto completa tarefas na nave espacial.</p>
-                <a href="https://www.html5games.com/game/among-us-io" class="game-link" target="_blank">Jogar Agora</a>
-                <button class="comments-btn" onclick="openComments('among-us')">
-                    <i class="fas fa-comments"></i> Comentários
-                </button>
             </div>
         </div>
-
-        <!-- Jogo 5 - 8 Ball Pool -->
-        <div class="game-card" data-name="8 ball pool">
-            <div class="game-image">
-                <img src="https://images.unsplash.com/photo-1610041321327-b794c052db27?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="8 Ball Pool">
-            </div>
-            <div class="game-content">
-                <h3 class="game-title">8 Ball Pool</h3>
-                <div class="game-info">
-                    <span><i class="fas fa-gamepad"></i> Esportes</span>
-                    <span><i class="fas fa-shield-alt"></i> Seguro</span>
-                </div>
-                <p class="game-description">Jogue sinuca online contra jogadores de todo o mundo e mostre suas habilidades.</p>
-                <a href="https://www.jogos360.com.br/8_ball_pool.html" class="game-link" target="_blank">Jogar Agora</a>
-                <button class="comments-btn" onclick="openComments('8ball-pool')">
-                    <i class="fas fa-comments"></i> Comentários
-                </button>
-            </div>
-        </div>
-
-        <!-- Jogo 6 - Agar.io -->
-        <div class="game-card" data-name="agario">
-            <div class="game-image">
-                <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="Agar.io">
-            </div>
-            <div class="game-content">
-                <h3 class="game-title">Agar.io</h3>
-                <div class="game-info">
-                    <span><i class="fas fa-gamepad"></i> Multiplayer</span>
-                    <span><i class="fas fa-shield-alt"></i> Seguro</span>
-                </div>
-                <p class="game-description">Jogue online com outros jogadores, coma bolinhas e cresça para dominar o jogo.</p>
-                <a href="https://agar.io/" class="game-link" target="_blank">Jogar Agora</a>
-                <button class="comments-btn" onclick="openComments('agario')">
-                    <i class="fas fa-comments"></i> Comentários
-                </button>
-            </div>
-        </div>
-
-        <!-- Jogo 7 - Monkey Mart -->
-        <div class="game-card" data-name="monkey mart">
-            <div class="game-image" style="display: flex; align-items: center; justify-content: center; font-size: 4rem; color: #4CAF50;">
-                <i class="fas fa-store"></i>
-            </div>
-            <div class="game-content">
-                <h3 class="game-title">Monkey Mart</h3>
-                <div class="game-info">
-                    <span><i class="fas fa-store"></i> Gerenciamento</span>
-                    <span><i class="fas fa-shield-alt"></i> Seguro</span>
-                </div>
-                <p class="game-description">Gerencie um mercado divertido com macacos clientes. Mantenha estoque e faça upgrades!</p>
-                <a href="https://poki.com/br/g/monkey-mart" class="game-link" target="_blank">Jogar Agora</a>
-                <button class="comments-btn" onclick="openComments('monkey-mart')">
-                    <i class="fas fa-comments"></i> Comentários
-                </button>
-            </div>
-        </div>
-    </div>
+    </section>
 
     <!-- Mensagem de nenhum resultado -->
     <div id="no-results" class="no-results">
         <i class="fas fa-search" style="font-size: 3rem; margin-bottom: 1rem;"></i>
         <h3>Nenhum jogo encontrado</h3>
         <p>Tente buscar com outras palavras-chave</p>
-    </div>
-    
-    <div class="safety-tips">
-        <h2><i class="fas fa-exclamation-triangle"></i> Dicas de Segurança Online</h2>
-        <ul class="tips-list">
-            <li>Nunca forneça informações pessoais em sites de jogos</li>
-            <li>Crie senhas fortes e diferentes para cada site</li>
-            <li>Mantenha seu navegador e antivírus atualizados</li>
-            <li>Desconfie de promoções ou ofertas muito boas para serem verdade</li>
-            <li>Use uma rede Wi-Fi segura para jogar online</li>
-            <li>Verifique se o site possui conexão HTTPS (cadeado verde na barra de endereços)</li>
-        </ul>
     </div>
     
     <footer>
@@ -816,6 +1092,33 @@
         </div>
     </div>
 
+    <!-- Modal de Amigos -->
+    <div id="friends-modal" class="friends-modal">
+        <div class="friends-modal-content">
+            <span class="close-friends">&times;</span>
+            <div class="comments-header">
+                <h2 id="friends-modal-title">Gerenciar Amizade</h2>
+                <p id="friends-modal-desc">Ações de amizade</p>
+            </div>
+            
+            <div class="friend-card" id="friend-modal-card">
+                <!-- Informações do amigo serão mostradas aqui -->
+            </div>
+            
+            <div class="friend-actions" style="justify-content: center; margin-top: 20px;">
+                <button class="friend-btn btn-add" id="btn-add-friend" onclick="addFriend()">
+                    <i class="fas fa-user-plus"></i> Adicionar
+                </button>
+                <button class="friend-btn btn-remove" id="btn-remove-friend" onclick="removeFriend()">
+                    <i class="fas fa-user-times"></i> Remover
+                </button>
+                <button class="friend-btn btn-message" id="btn-message-friend" onclick="sendMessage()">
+                    <i class="fas fa-envelope"></i> Mensagem
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Sistema de Login/Cadastro -->
     <div id="auth-modal" class="auth-modal">
         <div class="auth-content">
@@ -845,13 +1148,23 @@
     <!-- Menu do Usuário -->
     <div id="user-menu" class="user-menu">
         <p>Olá, <span id="user-name"></span>!</p>
-        <button onclick="logout()">Sair</button>
+        <button onclick="openSection('profile')"><i class="fas fa-user"></i> Perfil</button>
+        <button onclick="openSection('friends')"><i class="fas fa-users"></i> Amigos</button>
+        <button onclick="logout()"><i class="fas fa-sign-out-alt"></i> Sair</button>
     </div>
 
     <script>
-    // Sistema de Autenticação
+    // Sistema de Autenticação e Amigos
     let currentUser = null;
     let currentGame = '';
+    let currentFriend = null;
+    const allUsers = [
+        { id: 1, name: "João Silva", email: "joao@email.com", avatar: "J", games: 12, friends: 8 },
+        { id: 2, name: "Maria Santos", email: "maria@email.com", avatar: "M", games: 8, friends: 15 },
+        { id: 3, name: "Pedro Costa", email: "pedro@email.com", avatar: "P", games: 5, friends: 3 },
+        { id: 4, name: "Ana Oliveira", email: "ana@email.com", avatar: "A", games: 20, friends: 25 },
+        { id: 5, name: "Carlos Lima", email: "carlos@email.com", avatar: "C", games: 3, friends: 7 }
+    ];
 
     // Elementos do DOM
     const authModal = document.getElementById('auth-modal');
@@ -861,15 +1174,152 @@
     const userMenu = document.getElementById('user-menu');
     const userNameSpan = document.getElementById('user-name');
     const searchInput = document.getElementById('search-input');
-    const gameCards = document.querySelectorAll('.game-card');
     const noResults = document.getElementById('no-results');
     const commentsModal = document.getElementById('comments-modal');
     const commentsGameTitle = document.getElementById('comments-game-title');
     const commentText = document.getElementById('comment-text');
     const commentsList = document.getElementById('comments-list');
     const noComments = document.getElementById('no-comments');
+    const friendsModal = document.getElementById('friends-modal');
+    const friendsResults = document.getElementById('friends-results');
+    const friendsList = document.getElementById('friends-list');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const contentSections = document.querySelectorAll('.content-section');
+    const profileName = document.getElementById('profile-name');
+    const profileEmail = document.getElementById('profile-email');
+    const statsGames = document.getElementById('stats-games');
+    const statsComments = document.getElementById('stats-comments');
+    const statsFriends = document.getElementById('stats-friends');
 
-    // Sistema de Busca
+    // Inicialização
+    document.addEventListener('DOMContentLoaded', function() {
+        loadGames();
+        initNavigation();
+        checkLoginStatus();
+    });
+
+    // Sistema de Navegação
+    function initNavigation() {
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const section = this.getAttribute('data-section');
+                openSection(section);
+            });
+        });
+    }
+
+    function openSection(section) {
+        // Atualizar menu
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('data-section') === section) {
+                link.classList.add('active');
+            }
+        });
+
+        // Mostrar seção
+        contentSections.forEach(sec => {
+            sec.classList.remove('active');
+            if (sec.id === section) {
+                sec.classList.add('active');
+            }
+        });
+
+        // Fechar menus
+        userMenu.style.display = 'none';
+    }
+
+    // Carregar jogos
+    function loadGames() {
+        const gamesGrid = document.querySelector('.games-grid');
+        const games = [
+            {
+                name: "subway surfers",
+                title: "Subway Surfers",
+                image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80",
+                description: "Corra pelos trilhos do metrô desviando de trens e obstáculos nesse jogo viciante.",
+                link: "https://poki.com/br/g/subway-surfers",
+                category: "Ação"
+            },
+            {
+                name: "slitherio",
+                title: "Slither.io",
+                image: "https://images.unsplash.com/photo-1552820728-8b83bb6b773f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80",
+                description: "Controle uma cobrinha, coma bolinhas e derrote outros jogadores para crescer.",
+                link: "https://slither.io/",
+                category: "Estratégia"
+            },
+            {
+                name: "minecraft",
+                title: "Minecraft Classic",
+                image: "https://images.unsplash.com/photo-1485846234645-a62644f84728?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80",
+                description: "Construa e explore mundos infinitos com blocos neste jogo de sandbox.",
+                link: "https://classic.minecraft.net/",
+                category: "Aventura"
+            },
+            {
+                name: "among us",
+                title: "Among Us",
+                image: "https://images.unsplash.com/photo-1593305841991-05c297ba4575?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80",
+                description: "Descubra quem é o impostor enquanto completa tarefas na nave espacial.",
+                link: "https://www.html5games.com/game/among-us-io",
+                category: "Estratégia"
+            },
+            {
+                name: "8 ball pool",
+                title: "8 Ball Pool",
+                image: "https://images.unsplash.com/photo-1610041321327-b794c052db27?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80",
+                description: "Jogue sinuca online contra jogadores de todo o mundo e mostre suas habilidades.",
+                link: "https://www.jogos360.com.br/8_ball_pool.html",
+                category: "Esportes"
+            },
+            {
+                name: "agario",
+                title: "Agar.io",
+                image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80",
+                description: "Jogue online com outros jogadores, coma bolinhas e cresça para dominar o jogo.",
+                link: "https://agar.io/",
+                category: "Multiplayer"
+            },
+            {
+                name: "monkey mart",
+                title: "Monkey Mart",
+                image: "",
+                description: "Gerencie um mercado divertido com macacos clientes. Mantenha estoque e faça upgrades!",
+                link: "https://poki.com/br/g/monkey-mart",
+                category: "Gerenciamento"
+            }
+        ];
+
+        gamesGrid.innerHTML = games.map(game => `
+            <div class="game-card" data-name="${game.name}">
+                <div class="game-image">
+                    ${game.image ? 
+                        `<img src="${game.image}" alt="${game.title}">` : 
+                        `<i class="fas fa-store" style="font-size: 4rem; color: #e63946;"></i>`
+                    }
+                </div>
+                <div class="game-content">
+                    <h3 class="game-title">${game.title}</h3>
+                    <div class="game-info">
+                        <span><i class="fas fa-gamepad"></i> ${game.category}</span>
+                        <span><i class="fas fa-shield-alt"></i> Seguro</span>
+                    </div>
+                    <p class="game-description">${game.description}</p>
+                    <a href="${game.link}" class="game-link" target="_blank">Jogar Agora</a>
+                    <button class="comments-btn" onclick="openComments('${game.name}')">
+                        <i class="fas fa-comments"></i> Comentários
+                    </button>
+                </div>
+            </div>
+        `).join('');
+
+        // Atualizar cards de jogo
+        gameCards = document.querySelectorAll('.game-card');
+    }
+
+    // Sistema de Busca de Jogos
     function searchGames() {
         const searchTerm = searchInput.value.toLowerCase().trim();
         let foundResults = false;
@@ -884,12 +1334,97 @@
             }
         });
 
-        // Mostrar mensagem se não encontrar resultados
         if (!foundResults && searchTerm !== '') {
             noResults.style.display = 'block';
         } else {
             noResults.style.display = 'none';
         }
+    }
+
+    // Sistema de Amigos
+    function searchFriends() {
+        const searchTerm = document.getElementById('friend-search').value.toLowerCase().trim();
+        friendsResults.innerHTML = '';
+
+        const results = allUsers.filter(user => 
+            user.name.toLowerCase().includes(searchTerm) || 
+            user.email.toLowerCase().includes(searchTerm)
+        );
+
+        if (results.length === 0) {
+            friendsResults.innerHTML = '<p style="text-align: center; color: #a8dadc;">Nenhum usuário encontrado</p>';
+            return;
+        }
+
+        results.forEach(user => {
+            const isFriend = currentUser && Math.random() > 0.5; // Simulação
+            const friendCard = document.createElement('div');
+            friendCard.className = 'friend-card';
+            friendCard.innerHTML = `
+                <div class="friend-avatar">${user.avatar}</div>
+                <div class="friend-name">${user.name}</div>
+                <div class="friend-status">${user.games} jogos • ${user.friends} amigos</div>
+                <div class="friend-actions">
+                    ${isFriend ? 
+                        `<button class="friend-btn btn-remove" onclick="manageFriend(${user.id}, 'remove')">
+                            <i class="fas fa-user-times"></i> Remover
+                         </button>` :
+                        `<button class="friend-btn btn-add" onclick="manageFriend(${user.id}, 'add')">
+                            <i class="fas fa-user-plus"></i> Adicionar
+                         </button>`
+                    }
+                    <button class="friend-btn btn-message" onclick="manageFriend(${user.id}, 'message')">
+                        <i class="fas fa-envelope"></i> Mensagem
+                    </button>
+                </div>
+            `;
+            friendsResults.appendChild(friendCard);
+        });
+    }
+
+    function manageFriend(userId, action) {
+        const user = allUsers.find(u => u.id === userId);
+        if (!user) return;
+
+        currentFriend = user;
+
+        if (action === 'add') {
+            showNotification(`${user.name} adicionado aos amigos!`);
+        } else if (action === 'remove') {
+            showNotification(`${user.name} removido dos amigos.`);
+        } else if (action === 'message') {
+            alert(`Sistema de mensagens para ${user.name} será implementado em breve!`);
+        }
+
+        // Atualizar contador de amigos
+        if (currentUser) {
+            statsFriends.textContent = parseInt(statsFriends.textContent) + (action === 'add' ? 1 : -1);
+        }
+    }
+
+    function loadFriendsList() {
+        friendsList.innerHTML = '';
+        // Simulação de amigos
+        const userFriends = allUsers.slice(0, 3); // Primeiros 3 como amigos
+
+        userFriends.forEach(friend => {
+            const friendCard = document.createElement('div');
+            friendCard.className = 'friend-card';
+            friendCard.innerHTML = `
+                <div class="friend-avatar">${friend.avatar}</div>
+                <div class="friend-name">${friend.name}</div>
+                <div class="friend-status">${friend.games} jogos • ${friend.friends} amigos</div>
+                <div class="friend-actions">
+                    <button class="friend-btn btn-message" onclick="manageFriend(${friend.id}, 'message')">
+                        <i class="fas fa-envelope"></i> Mensagem
+                    </button>
+                    <button class="friend-btn btn-remove" onclick="manageFriend(${friend.id}, 'remove')">
+                        <i class="fas fa-user-times"></i> Remover
+                    </button>
+                </div>
+            `;
+            friendsList.appendChild(friendCard);
+        });
     }
 
     // Sistema de Comentários
@@ -902,7 +1437,7 @@
         }
 
         currentGame = gameId;
-        const gameTitle = document.querySelector(`.game-card[data-name="${gameId.replace('-', ' ')}"] .game-title`).textContent;
+        const gameTitle = document.querySelector(`.game-card[data-name="${gameId}"] .game-title`).textContent;
         commentsGameTitle.textContent = `Comentários: ${gameTitle}`;
         commentsModal.style.display = 'block';
         loadComments();
@@ -949,51 +1484,33 @@
         
         commentText.value = '';
         loadComments();
-        alert('Comentário adicionado com sucesso!');
+        showNotification('Comentário adicionado com sucesso!');
+        
+        // Atualizar estatísticas
+        statsComments.textContent = parseInt(statsComments.textContent) + 1;
     }
 
-    // Fechar modal de comentários
-    document.querySelector('.close-comments').addEventListener('click', () => {
-        commentsModal.style.display = 'none';
-    });
+    // Sistema de Autenticação
+    function checkLoginStatus() {
+        const savedUser = localStorage.getItem('currentUser');
+        if (savedUser) {
+            currentUser = JSON.parse(savedUser);
+            updateUI();
+            loadFriendsList();
+            updateProfile();
+        }
+    }
 
-    // Event listeners para busca
-    searchInput.addEventListener('input', searchGames);
-    searchInput.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            searchGames();
-        }
-    });
-
-    // Fechar modais clicando fora
-    window.addEventListener('click', (event) => {
-        if (event.target === authModal) {
-            authModal.style.display = 'none';
-        }
-        if (event.target === commentsModal) {
-            commentsModal.style.display = 'none';
-        }
-        if (!event.target.matches('.login-btn') && !event.target.closest('.user-menu')) {
-            userMenu.style.display = 'none';
-        }
-    });
-
-    // Abrir modal de login
-    loginBtn.addEventListener('click', () => {
+    function updateProfile() {
         if (currentUser) {
-            userMenu.style.display = userMenu.style.display === 'block' ? 'none' : 'block';
-        } else {
-            authModal.style.display = 'block';
-            showLogin();
+            profileName.textContent = currentUser.name;
+            profileEmail.textContent = currentUser.email;
+            statsGames.textContent = Math.floor(Math.random() * 20) + 1;
+            statsComments.textContent = Math.floor(Math.random() * 10) + 1;
+            statsFriends.textContent = Math.floor(Math.random() * 15) + 1;
         }
-    });
+    }
 
-    // Fechar modal
-    document.querySelector('.close-auth').addEventListener('click', () => {
-        authModal.style.display = 'none';
-    });
-
-    // Alternar entre login e cadastro
     function showLogin() {
         loginForm.style.display = 'block';
         registerForm.style.display = 'none';
@@ -1004,7 +1521,6 @@
         registerForm.style.display = 'block';
     }
 
-    // Função de Login
     function login() {
         const email = document.getElementById('login-email').value;
         const password = document.getElementById('login-password').value;
@@ -1015,15 +1531,16 @@
         if (user) {
             currentUser = user;
             localStorage.setItem('currentUser', JSON.stringify(user));
-            alert('Login realizado com sucesso!');
+            showNotification('Login realizado com sucesso!');
             updateUI();
+            updateProfile();
+            loadFriendsList();
             authModal.style.display = 'none';
         } else {
             alert('E-mail ou senha incorretos!');
         }
     }
 
-    // Função de Cadastro
     function register() {
         const name = document.getElementById('register-name').value;
         const email = document.getElementById('register-email').value;
@@ -1036,24 +1553,38 @@
             return;
         }
         
-        const newUser = { name, email, password, favorites: [] };
+        const newUser = { 
+            name, 
+            email, 
+            password, 
+            favorites: [],
+            gamesPlayed: 0,
+            comments: 0,
+            friends: 0
+        };
+        
         users.push(newUser);
         localStorage.setItem('users', JSON.stringify(users));
         
-        alert('Conta criada com sucesso! Faça login para continuar.');
+        showNotification('Conta criada com sucesso! Faça login para continuar.');
         showLogin();
     }
 
-    // Função de Logout
     function logout() {
         currentUser = null;
         localStorage.removeItem('currentUser');
         updateUI();
         userMenu.style.display = 'none';
-        alert('Logout realizado com sucesso!');
+        showNotification('Logout realizado com sucesso!');
+        
+        // Resetar perfil
+        profileName.textContent = 'Visitante';
+        profileEmail.textContent = 'Faça login para ver seu perfil';
+        statsGames.textContent = '0';
+        statsComments.textContent = '0';
+        statsFriends.textContent = '0';
     }
 
-    // Atualizar interface após login/logout
     function updateUI() {
         if (currentUser) {
             loginBtn.innerHTML = `<i class="fas fa-user"></i> ${currentUser.name}`;
@@ -1063,14 +1594,57 @@
         }
     }
 
-    // Verificar se já está logado ao carregar a página
-    window.addEventListener('load', () => {
-        const savedUser = localStorage.getItem('currentUser');
-        if (savedUser) {
-            currentUser = JSON.parse(savedUser);
-            updateUI();
+    function editProfile() {
+        if (!currentUser) {
+            alert('Faça login para editar seu perfil!');
+            return;
+        }
+        alert('Editor de perfil será implementado em breve!');
+    }
+
+    function showNotification(message) {
+        // Notificação simples
+        alert(message);
+    }
+
+    // Event Listeners
+    loginBtn.addEventListener('click', () => {
+        if (currentUser) {
+            userMenu.style.display = userMenu.style.display === 'block' ? 'none' : 'block';
+        } else {
+            authModal.style.display = 'block';
+            showLogin();
         }
     });
+
+    document.querySelector('.close-auth').addEventListener('click', () => {
+        authModal.style.display = 'none';
+    });
+
+    document.querySelector('.close-comments').addEventListener('click', () => {
+        commentsModal.style.display = 'none';
+    });
+
+    document.querySelector('.close-friends').addEventListener('click', () => {
+        friendsModal.style.display = 'none';
+    });
+
+    searchInput.addEventListener('input', searchGames);
+    searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') searchGames();
+    });
+
+    window.addEventListener('click', (event) => {
+        if (event.target === authModal) authModal.style.display = 'none';
+        if (event.target === commentsModal) commentsModal.style.display = 'none';
+        if (event.target === friendsModal) friendsModal.style.display = 'none';
+        if (!event.target.matches('.login-btn') && !event.target.closest('.user-menu')) {
+            userMenu.style.display = 'none';
+        }
+    });
+
+    // Inicializar
+    let gameCards = [];
     </script>
 </body>
 </html>
