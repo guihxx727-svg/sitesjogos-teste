@@ -220,6 +220,143 @@
             background: linear-gradient(to right, #66BB6A, #81C784);
             box-shadow: 0 0 15px rgba(76, 175, 80, 0.5);
         }
+
+        /* Botão de Comentários */
+        .comments-btn {
+            display: block;
+            width: 100%;
+            padding: 0.6rem;
+            margin-top: 0.8rem;
+            background: transparent;
+            border: 1px solid #4CAF50;
+            color: #4CAF50;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .comments-btn:hover {
+            background: rgba(76, 175, 80, 0.2);
+        }
+        
+        /* Modal de Comentários */
+        .comments-modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+        }
+        
+        .comments-content {
+            background: #1d2d44;
+            margin: 5% auto;
+            padding: 25px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            border: 2px solid #4CAF50;
+            position: relative;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .close-comments {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .close-comments:hover {
+            color: #4CAF50;
+        }
+        
+        .comments-header {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .comments-header h2 {
+            color: #4CAF50;
+            margin-bottom: 5px;
+        }
+        
+        /* Formulário de Comentário */
+        .comment-form {
+            margin-bottom: 25px;
+            padding: 15px;
+            background: rgba(30, 30, 50, 0.5);
+            border-radius: 10px;
+        }
+        
+        .comment-form textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #415a77;
+            border-radius: 5px;
+            background: #0a0a1a;
+            color: white;
+            resize: vertical;
+            min-height: 80px;
+            margin-bottom: 10px;
+        }
+        
+        .comment-form button {
+            padding: 10px 20px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .comment-form button:hover {
+            background: #66BB6A;
+        }
+        
+        /* Lista de Comentários */
+        .comments-list {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .comment-item {
+            background: rgba(30, 30, 50, 0.5);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 3px solid #4CAF50;
+        }
+        
+        .comment-author {
+            font-weight: bold;
+            color: #4CAF50;
+            margin-bottom: 5px;
+        }
+        
+        .comment-text {
+            color: #e0e0e0;
+            line-height: 1.5;
+        }
+        
+        .comment-date {
+            font-size: 0.8rem;
+            color: #a0a0a0;
+            margin-top: 5px;
+            text-align: right;
+        }
+        
+        .no-comments {
+            text-align: center;
+            color: #a0a0a0;
+            padding: 20px;
+        }
         
         .safety-tips {
             background: rgba(0, 0, 0, 0.5);
@@ -421,6 +558,12 @@
                 margin: 1rem auto;
                 max-width: 90%;
             }
+            
+            .comments-content {
+                margin: 10% auto;
+                padding: 20px;
+                width: 95%;
+            }
         }
         
         @media (max-width: 480px) {
@@ -494,6 +637,9 @@
                 </div>
                 <p class="game-description">Corra pelos trilhos do metrô desviando de trens e obstáculos nesse jogo viciante.</p>
                 <a href="https://poki.com/br/g/subway-surfers" class="game-link" target="_blank">Jogar Agora</a>
+                <button class="comments-btn" onclick="openComments('subway-surfers')">
+                    <i class="fas fa-comments"></i> Comentários
+                </button>
             </div>
         </div>
         
@@ -510,6 +656,9 @@
                 </div>
                 <p class="game-description">Controle uma cobrinha, coma bolinhas e derrote outros jogadores para crescer.</p>
                 <a href="https://slither.io/" class="game-link" target="_blank">Jogar Agora</a>
+                <button class="comments-btn" onclick="openComments('slitherio')">
+                    <i class="fas fa-comments"></i> Comentários
+                </button>
             </div>
         </div>
         
@@ -526,6 +675,9 @@
                 </div>
                 <p class="game-description">Construa e explore mundos infinitos com blocos neste jogo de sandbox.</p>
                 <a href="https://classic.minecraft.net/" class="game-link" target="_blank">Jogar Agora</a>
+                <button class="comments-btn" onclick="openComments('minecraft')">
+                    <i class="fas fa-comments"></i> Comentários
+                </button>
             </div>
         </div>
 
@@ -542,6 +694,9 @@
                 </div>
                 <p class="game-description">Descubra quem é o impostor enquanto completa tarefas na nave espacial.</p>
                 <a href="https://www.html5games.com/game/among-us-io" class="game-link" target="_blank">Jogar Agora</a>
+                <button class="comments-btn" onclick="openComments('among-us')">
+                    <i class="fas fa-comments"></i> Comentários
+                </button>
             </div>
         </div>
 
@@ -558,6 +713,9 @@
                 </div>
                 <p class="game-description">Jogue sinuca online contra jogadores de todo o mundo e mostre suas habilidades.</p>
                 <a href="https://www.jogos360.com.br/8_ball_pool.html" class="game-link" target="_blank">Jogar Agora</a>
+                <button class="comments-btn" onclick="openComments('8ball-pool')">
+                    <i class="fas fa-comments"></i> Comentários
+                </button>
             </div>
         </div>
 
@@ -574,6 +732,9 @@
                 </div>
                 <p class="game-description">Jogue online com outros jogadores, coma bolinhas e cresça para dominar o jogo.</p>
                 <a href="https://agar.io/" class="game-link" target="_blank">Jogar Agora</a>
+                <button class="comments-btn" onclick="openComments('agario')">
+                    <i class="fas fa-comments"></i> Comentários
+                </button>
             </div>
         </div>
 
@@ -590,6 +751,9 @@
                 </div>
                 <p class="game-description">Gerencie um mercado divertido com macacos clientes. Mantenha estoque e faça upgrades!</p>
                 <a href="https://poki.com/br/g/monkey-mart" class="game-link" target="_blank">Jogar Agora</a>
+                <button class="comments-btn" onclick="openComments('monkey-mart')">
+                    <i class="fas fa-comments"></i> Comentários
+                </button>
             </div>
         </div>
     </div>
@@ -629,6 +793,29 @@
         </div>
     </footer>
 
+    <!-- Modal de Comentários -->
+    <div id="comments-modal" class="comments-modal">
+        <div class="comments-content">
+            <span class="close-comments">&times;</span>
+            <div class="comments-header">
+                <h2 id="comments-game-title">Comentários</h2>
+                <p>Deixe sua opinião sobre este jogo</p>
+            </div>
+            
+            <div class="comment-form">
+                <textarea id="comment-text" placeholder="Digite seu comentário..." required></textarea>
+                <button onclick="addComment()">Enviar Comentário</button>
+            </div>
+            
+            <div class="comments-list" id="comments-list">
+                <div class="no-comments" id="no-comments">
+                    <i class="fas fa-comment-slash" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                    <p>Nenhum comentário ainda. Seja o primeiro a comentar!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Sistema de Login/Cadastro -->
     <div id="auth-modal" class="auth-modal">
         <div class="auth-content">
@@ -664,6 +851,7 @@
     <script>
     // Sistema de Autenticação
     let currentUser = null;
+    let currentGame = '';
 
     // Elementos do DOM
     const authModal = document.getElementById('auth-modal');
@@ -675,6 +863,11 @@
     const searchInput = document.getElementById('search-input');
     const gameCards = document.querySelectorAll('.game-card');
     const noResults = document.getElementById('no-results');
+    const commentsModal = document.getElementById('comments-modal');
+    const commentsGameTitle = document.getElementById('comments-game-title');
+    const commentText = document.getElementById('comment-text');
+    const commentsList = document.getElementById('comments-list');
+    const noComments = document.getElementById('no-comments');
 
     // Sistema de Busca
     function searchGames() {
@@ -699,6 +892,71 @@
         }
     }
 
+    // Sistema de Comentários
+    function openComments(gameId) {
+        if (!currentUser) {
+            alert('Por favor, faça login para comentar!');
+            authModal.style.display = 'block';
+            showLogin();
+            return;
+        }
+
+        currentGame = gameId;
+        const gameTitle = document.querySelector(`.game-card[data-name="${gameId.replace('-', ' ')}"] .game-title`).textContent;
+        commentsGameTitle.textContent = `Comentários: ${gameTitle}`;
+        commentsModal.style.display = 'block';
+        loadComments();
+    }
+
+    function loadComments() {
+        const comments = JSON.parse(localStorage.getItem(`comments-${currentGame}`)) || [];
+        commentsList.innerHTML = '';
+
+        if (comments.length === 0) {
+            noComments.style.display = 'block';
+            return;
+        }
+
+        noComments.style.display = 'none';
+        comments.forEach(comment => {
+            const commentElement = document.createElement('div');
+            commentElement.className = 'comment-item';
+            commentElement.innerHTML = `
+                <div class="comment-author">${comment.author}</div>
+                <div class="comment-text">${comment.text}</div>
+                <div class="comment-date">${new Date(comment.date).toLocaleDateString('pt-BR')}</div>
+            `;
+            commentsList.appendChild(commentElement);
+        });
+    }
+
+    function addComment() {
+        const text = commentText.value.trim();
+        if (!text) {
+            alert('Por favor, digite um comentário!');
+            return;
+        }
+
+        const comments = JSON.parse(localStorage.getItem(`comments-${currentGame}`)) || [];
+        const newComment = {
+            author: currentUser.name,
+            text: text,
+            date: new Date().toISOString()
+        };
+
+        comments.unshift(newComment);
+        localStorage.setItem(`comments-${currentGame}`, JSON.stringify(comments));
+        
+        commentText.value = '';
+        loadComments();
+        alert('Comentário adicionado com sucesso!');
+    }
+
+    // Fechar modal de comentários
+    document.querySelector('.close-comments').addEventListener('click', () => {
+        commentsModal.style.display = 'none';
+    });
+
     // Event listeners para busca
     searchInput.addEventListener('input', searchGames);
     searchInput.addEventListener('keypress', function(e) {
@@ -707,686 +965,18 @@
         }
     });
 
-    // Abrir modal de login
-    loginBtn.addEventListener('click', () => {
-        if (currentUser) {
-            userMenu.style.display = userMenu.style.display === 'block' ? 'none' : 'block';
-        } else {
-            authModal.style.display = 'block';
-            showLogin();
-        }
-    });
-
-    // Fechar modal
-    document.querySelector('.close-auth').addEventListener('click', () => {
-        authModal.style.display = 'none';
-    });
-
-    // Alternar entre login e cadastro
-    function showLogin() {
-        loginForm.style.display = 'block';
-        registerForm.style.display = 'none';
-    }
-
-    function showRegister() {
-        loginForm.style.display = 'none';
-        registerForm.style.display = 'block';
-    }
-
-    // Fechar modal clicando fora dele
+    // Fechar modais clicando fora
     window.addEventListener('click', (event) => {
         if (event.target === authModal) {
             authModal.style.display = 'none';
+        }
+        if (event.target === commentsModal) {
+            commentsModal.style.display = 'none';
         }
         if (!event.target.matches('.login-btn') && !event.target.closest('.user-menu')) {
             userMenu.style.display = 'none';
         }
     });
-
-    // Função de Login
-    function login() {
-        const email = document.getElementById('login-email').value;
-        const password = document.getElementById('login-password').value;
-        
-        const users = JSON.parse(localStorage.getItem('users')) || [];
-        const user = users.find(u => u.email === email && u.password === password);
-        
-        if (user) {
-            currentUser = user;
-            localStorage.setItem('currentUser', JSON.stringify(user));
-            alert('Login realizado com sucesso!');
-            updateUI();
-            authModal.style.display = 'none';
-        } else {
-            alert('E-mail ou senha incorretos!');
-        }
-    }
-
-    // Função de Cadastro
-    function register() {
-        const name = document.getElementById('register-name').value;
-        const email = document.getElementById('register-email').value;
-        const password = document.getElementById('register-password').value;
-        
-        const users = JSON.parse(localStorage.getItem('users')) || [];
-        
-        if (users.find(u => u.email === email)) {
-            alert('Este e-mail já está cadastrado!');
-            return;
-        }
-        
-        const newUser = { name, email, password, favorites: [] };
-        users.push(newUser);
-        localStorage.setItem('users', JSON.stringify(users));
-        
-        alert('Conta criada com sucesso! Faça login para continuar.');
-        showLogin();
-    }
-
-    // Função de Logout
-    function logout() {
-        currentUser = null;
-        localStorage.removeItem('currentUser');
-        updateUI();
-        userMenu.style.display = 'none';
-        alert('Logout realizado com sucesso!');
-    }
-
-    // Atualizar interface após login/logout
-    function updateUI() {
-        if (currentUser) {
-            loginBtn.innerHTML = `<i class="fas fa-user"></i> ${currentUser.name}`;
-            userNameSpan.textContent = currentUser.name;
-        } else {
-            loginBtn.innerHTML = `<i class="fas fa-user"></i> Entrar`;
-        }
-    }
-
-    // Verificar se já está logado ao carregar a página
-    window.addEventListener('load', () => {
-        const savedUser = localStorage.getItem('currentUser');
-        if (savedUser) {
-            currentUser = JSON.parse(savedUser);
-            updateUI();
-        }
-    });
-    </script>
-</body>
-</html>            text-shadow: 0 0 15px rgba(76, 175, 80, 0.7);
-            font-weight: 800;
-            letter-spacing: 1px;
-        }
-        
-        .subtitle {
-            color: #e0e0e0;
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .security-info {
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 10px;
-            padding: 2rem;
-            margin: 2rem auto;
-            max-width: 900px;
-            border-left: 4px solid #4CAF50;
-        }
-        
-        .security-info h2 {
-            color: #4CAF50;
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-        
-        .security-features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-        
-        .security-card {
-            background: rgba(30, 30, 50, 0.7);
-            padding: 1.5rem;
-            border-radius: 10px;
-            text-align: center;
-            transition: transform 0.3s;
-        }
-        
-        .security-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .security-icon {
-            font-size: 2.5rem;
-            color: #4CAF50;
-            margin-bottom: 1rem;
-        }
-        
-        .security-card h3 {
-            color: #4CAF50;
-            margin-bottom: 0.5rem;
-        }
-        
-        .games-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
-            margin: 2rem auto;
-            max-width: 1200px;
-            padding: 1rem;
-        }
-        
-        .game-card {
-            background: linear-gradient(145deg, #1e1e2e, #252535);
-            border-radius: 15px;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-            border: 1px solid #33334d;
-        }
-        
-        .game-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(76, 175, 80, 0.3);
-        }
-        
-        .game-image {
-            width: 100%;
-            height: 180px;
-            overflow: hidden;
-            background: linear-gradient(45deg, #2a2a5a, #1a1a40);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #4CAF50;
-            font-size: 3rem;
-        }
-        
-        .game-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-        
-        .game-card:hover .game-image img {
-            transform: scale(1.1);
-        }
-        
-        .game-content {
-            padding: 1.5rem;
-        }
-        
-        .game-title {
-            font-size: 1.4rem;
-            margin-bottom: 0.5rem;
-            color: #4CAF50;
-        }
-        
-        .game-info {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-            color: #a0a0a0;
-        }
-        
-        .game-description {
-            color: #c0c0c0;
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
-        
-        .game-link {
-            display: block;
-            text-align: center;
-            padding: 0.8rem 1.5rem;
-            background: linear-gradient(to right, #4CAF50, #66BB6A);
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        
-        .game-link:hover {
-            background: linear-gradient(to right, #66BB6A, #81C784);
-            box-shadow: 0 0 15px rgba(76, 175, 80, 0.5);
-        }
-        
-        .safety-tips {
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 10px;
-            padding: 2rem;
-            margin: 2rem auto;
-            max-width: 900px;
-            border-left: 4px solid #FF9800;
-        }
-        
-        .safety-tips h2 {
-            color: #FF9800;
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-        
-        .tips-list {
-            list-style-type: none;
-        }
-        
-        .tips-list li {
-            margin-bottom: 1rem;
-            padding-left: 2rem;
-            position: relative;
-        }
-        
-        .tips-list li:before {
-            content: "✓";
-            color: #4CAF50;
-            position: absolute;
-            left: 0;
-            font-weight: bold;
-        }
-        
-        footer {
-            text-align: center;
-            padding: 3rem 1rem;
-            margin-top: 5rem;
-            background: rgba(0, 0, 0, 0.7);
-            border-top: 3px solid #4CAF50;
-            color: #a0a0a0;
-        }
-        
-        .footer-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin: 1.5rem 0;
-        }
-        
-        .footer-links a {
-            color: #4CAF50;
-            text-decoration: none;
-        }
-        
-        .footer-links a:hover {
-            text-decoration: underline;
-        }
-        
-        /* Estilos do Sistema de Autenticação */
-        .login-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            padding: 10px 20px;
-            background: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            z-index: 100;
-        }
-        
-        .auth-modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.8);
-        }
-        
-        .auth-content {
-            background: #1d2d44;
-            margin: 10% auto;
-            padding: 30px;
-            border-radius: 15px;
-            width: 90%;
-            max-width: 400px;
-            border: 2px solid #4CAF50;
-            position: relative;
-        }
-        
-        .close-auth {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        
-        .close-auth:hover {
-            color: #4CAF50;
-        }
-        
-        .auth-form h2 {
-            color: #4CAF50;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        
-        .auth-form input {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: 2px solid #415a77;
-            border-radius: 5px;
-            background: #0a0a1a;
-            color: white;
-        }
-        
-        .auth-form button {
-            width: 100%;
-            padding: 12px;
-            background: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-        
-        .auth-form button:hover {
-            background: #66BB6A;
-        }
-        
-        .auth-switch {
-            text-align: center;
-            margin-top: 15px;
-        }
-        
-        .auth-switch a {
-            color: #4CAF50;
-            text-decoration: none;
-        }
-        
-        .user-menu {
-            position: absolute;
-            top: 60px;
-            right: 20px;
-            background: #1d2d44;
-            border-radius: 5px;
-            padding: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            display: none;
-        }
-        
-        .user-menu button {
-            background: #e63946;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 3px;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 5px;
-        }
-        
-        @media (max-width: 768px) {
-            .games-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            }
-            
-            h1 {
-                font-size: 2.2rem;
-            }
-            
-            .security-features {
-                grid-template-columns: 1fr;
-            }
-            
-            .login-btn {
-                top: 10px;
-                right: 10px;
-                padding: 8px 15px;
-                font-size: 0.9rem;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .games-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            h1 {
-                font-size: 1.8rem;
-            }
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <button id="login-btn" class="login-btn">
-            <i class="fas fa-user"></i> Entrar
-        </button>
-        <h1><i class="fas fa-shield-alt"></i> GAMEZONE HOST</h1>
-        <p class="subtitle">Diversão garantida com segurança para você e seus amigos!</p>
-    </header>
-    
-    <div class="security-info">
-        <h2>Por que este site é seguro?</h2>
-        <div class="security-features">
-            <div class="security-card">
-                <div class="security-icon">
-                    <i class="fas fa-lock"></i>
-                </div>
-                <h3>Sem Downloads</h3>
-                <p>Todos os jogos rodam diretamente no navegador, não é necessário baixar nada.</p>
-            </div>
-            
-            <div class="security-card">
-                <div class="security-icon">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <h3>Links Verificados</h3>
-                <p>Todos os links direcionam para sites confiáveis e conhecidos.</p>
-            </div>
-            
-            <div class="security-card">
-                <div class="security-icon">
-                    <i class="fas fa-user-shield"></i>
-                </div>
-                <h3>Sem Cadastro</h3>
-                <p>Não é necessário criar conta ou fornecer dados pessoais.</p>
-            </div>
-        </div>
-    </div>
-    
-    <div class="games-grid">
-        <!-- Jogo 1 - Subway Surfers -->
-        <div class="game-card">
-            <div class="game-image">
-                <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="Subway Surfers">
-            </div>
-            <div class="game-content">
-                <h3 class="game-title">Subway Surfers</h3>
-                <div class="game-info">
-                    <span><i class="fas fa-gamepad"></i> Ação</span>
-                    <span><i class="fas fa-shield-alt"></i> Seguro</span>
-                </div>
-                <p class="game-description">Corra pelos trilhos do metrô desviando de trens e obstáculos nesse jogo viciante.</p>
-                <a href="https://poki.com/br/g/subway-surfers" class="game-link" target="_blank">Jogar Agora</a>
-            </div>
-        </div>
-        
-        <!-- Jogo 2 - Slither.io -->
-        <div class="game-card">
-            <div class="game-image">
-                <img src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="Slither.io">
-            </div>
-            <div class="game-content">
-                <h3 class="game-title">Slither.io</h3>
-                <div class="game-info">
-                    <span><i class="fas fa-gamepad"></i> Estratégia</span>
-                    <span><i class="fas fa-shield-alt"></i> Seguro</span>
-                </div>
-                <p class="game-description">Controle uma cobrinha, coma bolinhas e derrote outros jogadores para crescer.</p>
-                <a href="https://slither.io/" class="game-link" target="_blank">Jogar Agora</a>
-            </div>
-        </div>
-        
-        <!-- Jogo 3 - Minecraft -->
-        <div class="game-card">
-            <div class="game-image">
-                <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="Minecraft Classic">
-            </div>
-            <div class="game-content">
-                <h3 class="game-title">Minecraft Classic</h3>
-                <div class="game-info">
-                    <span><i class="fas fa-gamepad"></i> Aventura</span>
-                    <span><i class="fas fa-shield-alt"></i> Seguro</span>
-                </div>
-                <p class="game-description">Construa e explore mundos infinitos com blocos neste jogo de sandbox.</p>
-                <a href="https://classic.minecraft.net/" class="game-link" target="_blank">Jogar Agora</a>
-            </div>
-        </div>
-
-        <!-- Jogo 4 - Among Us -->
-        <div class="game-card">
-            <div class="game-image">
-                <img src="https://images.unsplash.com/photo-1593305841991-05c297ba4575?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="Among Us">
-            </div>
-            <div class="game-content">
-                <h3 class="game-title">Among Us</h3>
-                <div class="game-info">
-                    <span><i class="fas fa-gamepad"></i> Estratégia</span>
-                    <span><i class="fas fa-shield-alt"></i> Seguro</span>
-                </div>
-                <p class="game-description">Descubra quem é o impostor enquanto completa tarefas na nave espacial.</p>
-                <a href="https://www.html5games.com/game/among-us-io" class="game-link" target="_blank">Jogar Agora</a>
-            </div>
-        </div>
-
-        <!-- Jogo 5 - 8 Ball Pool -->
-        <div class="game-card">
-            <div class="game-image">
-                <img src="https://images.unsplash.com/photo-1610041321327-b794c052db27?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="8 Ball Pool">
-            </div>
-            <div class="game-content">
-                <h3 class="game-title">8 Ball Pool</h3>
-                <div class="game-info">
-                    <span><i class="fas fa-gamepad"></i> Esportes</span>
-                    <span><i class="fas fa-shield-alt"></i> Seguro</span>
-                </div>
-                <p class="game-description">Jogue sinuca online contra jogadores de todo o mundo e mostre suas habilidades.</p>
-                <a href="https://www.jogos360.com.br/8_ball_pool.html" class="game-link" target="_blank">Jogar Agora</a>
-            </div>
-        </div>
-
-        <!-- Jogo 6 - Agar.io -->
-        <div class="game-card">
-            <div class="game-image">
-                <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="Agar.io">
-            </div>
-            <div class="game-content">
-                <h3 class="game-title">Agar.io</h3>
-                <div class="game-info">
-                    <span><i class="fas fa-gamepad"></i> Multiplayer</span>
-                    <span><i class="fas fa-shield-alt"></i> Seguro</span>
-                </div>
-                <p class="game-description">Jogue online com outros jogadores, coma bolinhas e cresça para dominar o jogo.</p>
-                <a href="https://agar.io/" class="game-link" target="_blank">Jogar Agora</a>
-            </div>
-        </div>
-
-        <!-- Jogo 7 - Monkey Mart (IMAGEM GENÉRICA) -->
-<div class="game-card">
-    <div class="game-image">
-        <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="Monkey Mart">
-    </div>
-    <div class="game-content">
-        <h3 class="game-title">Monkey Mart</h3>
-        <div class="game-info">
-            <span><i class="fas fa-store"></i> Gerenciamento</span>
-            <span><i class="fas fa-shield-alt"></i> Seguro</span>
-        </div>
-        <p class="game-description">Gerencie um mercado divertido com macacos clientes. Mantenha estoque e faça upgrades!</p>
-        <a href="https://poki.com/br/g/monkey-mart" class="game-link" target="_blank">Jogar Agora</a>
-    </div>
-</div>
-    
-    <div class="safety-tips">
-        <h2><i class="fas fa-exclamation-triangle"></i> Dicas de Segurança Online</h2>
-        <ul class="tips-list">
-            <li>Nunca forneça informações pessoais em sites de jogos</li>
-            <li>Crie senhas fortes e diferentes para cada site</li>
-            <li>Mantenha seu navegador e antivírus atualizados</li>
-            <li>Desconfie de promoções ou ofertas muito boas para serem verdade</li>
-            <li>Use uma rede Wi-Fi segura para jogar online</li>
-            <li>Verifique se o site possui conexão HTTPS (cadeado verde na barra de endereços)</li>
-        </ul>
-    </div>
-    
-    <footer>
-        <div class="footer-content">
-            <h3>GameZone Host</h3>
-            <p>Um lugar divertido e seguro para jogar com seus amigos!</p>
-            
-            <div class="footer-links">
-                <a href="#">Política de Privacidade</a>
-                <a href="#">Termos de Uso</a>
-                <a href="#">Contato</a>
-            </div>
-            
-            <p><i class="fas fa-shield-alt"></i> Site 100% seguro - Não coletamos dados pessoais</p>
-            <p>&copy; 2023 GameZone Host. Todos os direitos reservados.</p>
-        </div>
-    </footer>
-
-    <!-- Sistema de Login/Cadastro -->
-    <div id="auth-modal" class="auth-modal">
-        <div class="auth-content">
-            <span class="close-auth">&times;</span>
-            
-            <!-- Formulário de Login -->
-            <div id="login-form" class="auth-form">
-                <h2><i class="fas fa-sign-in-alt"></i> Login</h2>
-                <input type="email" id="login-email" placeholder="Seu e-mail" required>
-                <input type="password" id="login-password" placeholder="Sua senha" required>
-                <button onclick="login()">Entrar</button>
-                <p class="auth-switch">Não tem conta? <a href="#" onclick="showRegister()">Cadastre-se</a></p>
-            </div>
-
-            <!-- Formulário de Cadastro -->
-            <div id="register-form" class="auth-form" style="display:none">
-                <h2><i class="fas fa-user-plus"></i> Cadastro</h2>
-                <input type="text" id="register-name" placeholder="Seu nome" required>
-                <input type="email" id="register-email" placeholder="Seu e-mail" required>
-                <input type="password" id="register-password" placeholder="Crie uma senha" required>
-                <button onclick="register()">Criar Conta</button>
-                <p class="auth-switch">Já tem conta? <a href="#" onclick="showLogin()">Fazer Login</a></p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Menu do Usuário -->
-    <div id="user-menu" class="user-menu">
-        <p>Olá, <span id="user-name"></span>!</p>
-        <button onclick="logout()">Sair</button>
-    </div>
-
-    <script>
-    // Sistema de Autenticação
-    let currentUser = null;
-
-    // Elementos do DOM
-    const authModal = document.getElementById('auth-modal');
-    const loginForm = document.getElementById('login-form');
-    const registerForm = document.getElementById('register-form');
-    const loginBtn = document.getElementById('login-btn');
-    const userMenu = document.getElementById('user-menu');
-    const userNameSpan = document.getElementById('user-name');
 
     // Abrir modal de login
     loginBtn.addEventListener('click', () => {
@@ -1413,16 +1003,6 @@
         loginForm.style.display = 'none';
         registerForm.style.display = 'block';
     }
-
-    // Fechar modal clicando fora dele
-    window.addEventListener('click', (event) => {
-        if (event.target === authModal) {
-            authModal.style.display = 'none';
-        }
-        if (!event.target.matches('.login-btn') && !event.target.closest('.user-menu')) {
-            userMenu.style.display = 'none';
-        }
-    });
 
     // Função de Login
     function login() {
@@ -1494,6 +1074,3 @@
     </script>
 </body>
 </html>
-
-
-
