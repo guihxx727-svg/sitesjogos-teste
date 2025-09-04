@@ -46,6 +46,784 @@
             margin: 0 auto;
         }
         
+        /* Barra de Busca */
+        .search-container {
+            max-width: 600px;
+            margin: 1.5rem auto;
+            position: relative;
+        }
+        
+        #search-input {
+            width: 100%;
+            padding: 12px 45px 12px 20px;
+            border-radius: 25px;
+            border: 2px solid #4CAF50;
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        #search-input:focus {
+            outline: none;
+            border-color: #66BB6A;
+            box-shadow: 0 0 15px rgba(76, 175, 80, 0.5);
+            background: rgba(0, 0, 0, 0.5);
+        }
+        
+        .search-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #4CAF50;
+            cursor: pointer;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 2rem;
+            color: #a0a0a0;
+            font-size: 1.1rem;
+            display: none;
+        }
+        
+        .security-info {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 900px;
+            border-left: 4px solid #4CAF50;
+        }
+        
+        .security-info h2 {
+            color: #4CAF50;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .security-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .security-card {
+            background: rgba(30, 30, 50, 0.7);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .security-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .security-icon {
+            font-size: 2.5rem;
+            color: #4CAF50;
+            margin-bottom: 1rem;
+        }
+        
+        .security-card h3 {
+            color: #4CAF50;
+            margin-bottom: 0.5rem;
+        }
+        
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem auto;
+            max-width: 1200px;
+            padding: 1rem;
+        }
+        
+        .game-card {
+            background: linear-gradient(145deg, #1e1e2e, #252535);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            border: 1px solid #33334d;
+        }
+        
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(76, 175, 80, 0.3);
+        }
+        
+        .game-image {
+            width: 100%;
+            height: 180px;
+            overflow: hidden;
+            background: linear-gradient(45deg, #2a2a5a, #1a1a40);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4CAF50;
+            font-size: 3rem;
+        }
+        
+        .game-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .game-card:hover .game-image img {
+            transform: scale(1.1);
+        }
+        
+        .game-content {
+            padding: 1.5rem;
+        }
+        
+        .game-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: #4CAF50;
+        }
+        
+        .game-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #a0a0a0;
+        }
+        
+        .game-description {
+            color: #c0c0c0;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .game-link {
+            display: block;
+            text-align: center;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(to right, #4CAF50, #66BB6A);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .game-link:hover {
+            background: linear-gradient(to right, #66BB6A, #81C784);
+            box-shadow: 0 0 15px rgba(76, 175, 80, 0.5);
+        }
+        
+        .safety-tips {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 900px;
+            border-left: 4px solid #FF9800;
+        }
+        
+        .safety-tips h2 {
+            color: #FF9800;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .tips-list {
+            list-style-type: none;
+        }
+        
+        .tips-list li {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+        
+        .tips-list li:before {
+            content: "✓";
+            color: #4CAF50;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 3rem 1rem;
+            margin-top: 5rem;
+            background: rgba(0, 0, 0, 0.7);
+            border-top: 3px solid #4CAF50;
+            color: #a0a0a0;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1.5rem 0;
+        }
+        
+        .footer-links a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Estilos do Sistema de Autenticação */
+        .login-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            z-index: 100;
+        }
+        
+        .auth-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+        }
+        
+        .auth-content {
+            background: #1d2d44;
+            margin: 10% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 400px;
+            border: 2px solid #4CAF50;
+            position: relative;
+        }
+        
+        .close-auth {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .close-auth:hover {
+            color: #4CAF50;
+        }
+        
+        .auth-form h2 {
+            color: #4CAF50;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .auth-form input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #415a77;
+            border-radius: 5px;
+            background: #0a0a1a;
+            color: white;
+        }
+        
+        .auth-form button {
+            width: 100%;
+            padding: 12px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        
+        .auth-form button:hover {
+            background: #66BB6A;
+        }
+        
+        .auth-switch {
+            text-align: center;
+            margin-top: 15px;
+        }
+        
+        .auth-switch a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        
+        .user-menu {
+            position: absolute;
+            top: 60px;
+            right: 20px;
+            background: #1d2d44;
+            border-radius: 5px;
+            padding: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            display: none;
+        }
+        
+        .user-menu button {
+            background: #e63946;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 3px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 5px;
+        }
+        
+        @media (max-width: 768px) {
+            .games-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .security-features {
+                grid-template-columns: 1fr;
+            }
+            
+            .login-btn {
+                top: 10px;
+                right: 10px;
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .search-container {
+                margin: 1rem auto;
+                max-width: 90%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .games-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <button id="login-btn" class="login-btn">
+            <i class="fas fa-user"></i> Entrar
+        </button>
+        <h1><i class="fas fa-shield-alt"></i> GAMEZONE HOST</h1>
+        <p class="subtitle">Diversão garantida com segurança para você e seus amigos!</p>
+        
+        <!-- Barra de Busca -->
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Buscar jogos por nome...">
+            <div class="search-icon" onclick="searchGames()">
+                <i class="fas fa-search"></i>
+            </div>
+        </div>
+    </header>
+    
+    <div class="security-info">
+        <h2>Por que este site é seguro?</h2>
+        <div class="security-features">
+            <div class="security-card">
+                <div class="security-icon">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <h3>Sem Downloads</h3>
+                <p>Todos os jogos rodam diretamente no navegador, não é necessário baixar nada.</p>
+            </div>
+            
+            <div class="security-card">
+                <div class="security-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Links Verificados</h3>
+                <p>Todos os links direcionam para sites confiáveis e conhecidos.</p>
+            </div>
+            
+            <div class="security-card">
+                <div class="security-icon">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <h3>Sem Cadastro</h3>
+                <p>Não é necessário criar conta ou fornecer dados pessoais.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="games-grid">
+        <!-- Jogo 1 - Subway Surfers -->
+        <div class="game-card" data-name="subway surfers">
+            <div class="game-image">
+                <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="Subway Surfers">
+            </div>
+            <div class="game-content">
+                <h3 class="game-title">Subway Surfers</h3>
+                <div class="game-info">
+                    <span><i class="fas fa-gamepad"></i> Ação</span>
+                    <span><i class="fas fa-shield-alt"></i> Seguro</span>
+                </div>
+                <p class="game-description">Corra pelos trilhos do metrô desviando de trens e obstáculos nesse jogo viciante.</p>
+                <a href="https://poki.com/br/g/subway-surfers" class="game-link" target="_blank">Jogar Agora</a>
+            </div>
+        </div>
+        
+        <!-- Jogo 2 - Slither.io -->
+        <div class="game-card" data-name="slitherio">
+            <div class="game-image">
+                <img src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="Slither.io">
+            </div>
+            <div class="game-content">
+                <h3 class="game-title">Slither.io</h3>
+                <div class="game-info">
+                    <span><i class="fas fa-gamepad"></i> Estratégia</span>
+                    <span><i class="fas fa-shield-alt"></i> Seguro</span>
+                </div>
+                <p class="game-description">Controle uma cobrinha, coma bolinhas e derrote outros jogadores para crescer.</p>
+                <a href="https://slither.io/" class="game-link" target="_blank">Jogar Agora</a>
+            </div>
+        </div>
+        
+        <!-- Jogo 3 - Minecraft -->
+        <div class="game-card" data-name="minecraft">
+            <div class="game-image">
+                <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="Minecraft Classic">
+            </div>
+            <div class="game-content">
+                <h3 class="game-title">Minecraft Classic</h3>
+                <div class="game-info">
+                    <span><i class="fas fa-gamepad"></i> Aventura</span>
+                    <span><i class="fas fa-shield-alt"></i> Seguro</span>
+                </div>
+                <p class="game-description">Construa e explore mundos infinitos com blocos neste jogo de sandbox.</p>
+                <a href="https://classic.minecraft.net/" class="game-link" target="_blank">Jogar Agora</a>
+            </div>
+        </div>
+
+        <!-- Jogo 4 - Among Us -->
+        <div class="game-card" data-name="among us">
+            <div class="game-image">
+                <img src="https://images.unsplash.com/photo-1593305841991-05c297ba4575?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="Among Us">
+            </div>
+            <div class="game-content">
+                <h3 class="game-title">Among Us</h3>
+                <div class="game-info">
+                    <span><i class="fas fa-gamepad"></i> Estratégia</span>
+                    <span><i class="fas fa-shield-alt"></i> Seguro</span>
+                </div>
+                <p class="game-description">Descubra quem é o impostor enquanto completa tarefas na nave espacial.</p>
+                <a href="https://www.html5games.com/game/among-us-io" class="game-link" target="_blank">Jogar Agora</a>
+            </div>
+        </div>
+
+        <!-- Jogo 5 - 8 Ball Pool -->
+        <div class="game-card" data-name="8 ball pool">
+            <div class="game-image">
+                <img src="https://images.unsplash.com/photo-1610041321327-b794c052db27?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="8 Ball Pool">
+            </div>
+            <div class="game-content">
+                <h3 class="game-title">8 Ball Pool</h3>
+                <div class="game-info">
+                    <span><i class="fas fa-gamepad"></i> Esportes</span>
+                    <span><i class="fas fa-shield-alt"></i> Seguro</span>
+                </div>
+                <p class="game-description">Jogue sinuca online contra jogadores de todo o mundo e mostre suas habilidades.</p>
+                <a href="https://www.jogos360.com.br/8_ball_pool.html" class="game-link" target="_blank">Jogar Agora</a>
+            </div>
+        </div>
+
+        <!-- Jogo 6 - Agar.io -->
+        <div class="game-card" data-name="agario">
+            <div class="game-image">
+                <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="Agar.io">
+            </div>
+            <div class="game-content">
+                <h3 class="game-title">Agar.io</h3>
+                <div class="game-info">
+                    <span><i class="fas fa-gamepad"></i> Multiplayer</span>
+                    <span><i class="fas fa-shield-alt"></i> Seguro</span>
+                </div>
+                <p class="game-description">Jogue online com outros jogadores, coma bolinhas e cresça para dominar o jogo.</p>
+                <a href="https://agar.io/" class="game-link" target="_blank">Jogar Agora</a>
+            </div>
+        </div>
+
+        <!-- Jogo 7 - Monkey Mart -->
+        <div class="game-card" data-name="monkey mart">
+            <div class="game-image" style="display: flex; align-items: center; justify-content: center; font-size: 4rem; color: #4CAF50;">
+                <i class="fas fa-store"></i>
+            </div>
+            <div class="game-content">
+                <h3 class="game-title">Monkey Mart</h3>
+                <div class="game-info">
+                    <span><i class="fas fa-store"></i> Gerenciamento</span>
+                    <span><i class="fas fa-shield-alt"></i> Seguro</span>
+                </div>
+                <p class="game-description">Gerencie um mercado divertido com macacos clientes. Mantenha estoque e faça upgrades!</p>
+                <a href="https://poki.com/br/g/monkey-mart" class="game-link" target="_blank">Jogar Agora</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mensagem de nenhum resultado -->
+    <div id="no-results" class="no-results">
+        <i class="fas fa-search" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+        <h3>Nenhum jogo encontrado</h3>
+        <p>Tente buscar com outras palavras-chave</p>
+    </div>
+    
+    <div class="safety-tips">
+        <h2><i class="fas fa-exclamation-triangle"></i> Dicas de Segurança Online</h2>
+        <ul class="tips-list">
+            <li>Nunca forneça informações pessoais em sites de jogos</li>
+            <li>Crie senhas fortes e diferentes para cada site</li>
+            <li>Mantenha seu navegador e antivírus atualizados</li>
+            <li>Desconfie de promoções ou ofertas muito boas para serem verdade</li>
+            <li>Use uma rede Wi-Fi segura para jogar online</li>
+            <li>Verifique se o site possui conexão HTTPS (cadeado verde na barra de endereços)</li>
+        </ul>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <h3>GameZone Host</h3>
+            <p>Um lugar divertido e seguro para jogar com seus amigos!</p>
+            
+            <div class="footer-links">
+                <a href="#">Política de Privacidade</a>
+                <a href="#">Termos de Uso</a>
+                <a href="#">Contato</a>
+            </div>
+            
+            <p><i class="fas fa-shield-alt"></i> Site 100% seguro - Não coletamos dados pessoais</p>
+            <p>&copy; 2023 GameZone Host. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Sistema de Login/Cadastro -->
+    <div id="auth-modal" class="auth-modal">
+        <div class="auth-content">
+            <span class="close-auth">&times;</span>
+            
+            <!-- Formulário de Login -->
+            <div id="login-form" class="auth-form">
+                <h2><i class="fas fa-sign-in-alt"></i> Login</h2>
+                <input type="email" id="login-email" placeholder="Seu e-mail" required>
+                <input type="password" id="login-password" placeholder="Sua senha" required>
+                <button onclick="login()">Entrar</button>
+                <p class="auth-switch">Não tem conta? <a href="#" onclick="showRegister()">Cadastre-se</a></p>
+            </div>
+
+            <!-- Formulário de Cadastro -->
+            <div id="register-form" class="auth-form" style="display:none">
+                <h2><i class="fas fa-user-plus"></i> Cadastro</h2>
+                <input type="text" id="register-name" placeholder="Seu nome" required>
+                <input type="email" id="register-email" placeholder="Seu e-mail" required>
+                <input type="password" id="register-password" placeholder="Crie uma senha" required>
+                <button onclick="register()">Criar Conta</button>
+                <p class="auth-switch">Já tem conta? <a href="#" onclick="showLogin()">Fazer Login</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Menu do Usuário -->
+    <div id="user-menu" class="user-menu">
+        <p>Olá, <span id="user-name"></span>!</p>
+        <button onclick="logout()">Sair</button>
+    </div>
+
+    <script>
+    // Sistema de Autenticação
+    let currentUser = null;
+
+    // Elementos do DOM
+    const authModal = document.getElementById('auth-modal');
+    const loginForm = document.getElementById('login-form');
+    const registerForm = document.getElementById('register-form');
+    const loginBtn = document.getElementById('login-btn');
+    const userMenu = document.getElementById('user-menu');
+    const userNameSpan = document.getElementById('user-name');
+    const searchInput = document.getElementById('search-input');
+    const gameCards = document.querySelectorAll('.game-card');
+    const noResults = document.getElementById('no-results');
+
+    // Sistema de Busca
+    function searchGames() {
+        const searchTerm = searchInput.value.toLowerCase().trim();
+        let foundResults = false;
+
+        gameCards.forEach(card => {
+            const gameName = card.getAttribute('data-name').toLowerCase();
+            if (gameName.includes(searchTerm) || searchTerm === '') {
+                card.style.display = 'block';
+                foundResults = true;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        // Mostrar mensagem se não encontrar resultados
+        if (!foundResults && searchTerm !== '') {
+            noResults.style.display = 'block';
+        } else {
+            noResults.style.display = 'none';
+        }
+    }
+
+    // Event listeners para busca
+    searchInput.addEventListener('input', searchGames);
+    searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            searchGames();
+        }
+    });
+
+    // Abrir modal de login
+    loginBtn.addEventListener('click', () => {
+        if (currentUser) {
+            userMenu.style.display = userMenu.style.display === 'block' ? 'none' : 'block';
+        } else {
+            authModal.style.display = 'block';
+            showLogin();
+        }
+    });
+
+    // Fechar modal
+    document.querySelector('.close-auth').addEventListener('click', () => {
+        authModal.style.display = 'none';
+    });
+
+    // Alternar entre login e cadastro
+    function showLogin() {
+        loginForm.style.display = 'block';
+        registerForm.style.display = 'none';
+    }
+
+    function showRegister() {
+        loginForm.style.display = 'none';
+        registerForm.style.display = 'block';
+    }
+
+    // Fechar modal clicando fora dele
+    window.addEventListener('click', (event) => {
+        if (event.target === authModal) {
+            authModal.style.display = 'none';
+        }
+        if (!event.target.matches('.login-btn') && !event.target.closest('.user-menu')) {
+            userMenu.style.display = 'none';
+        }
+    });
+
+    // Função de Login
+    function login() {
+        const email = document.getElementById('login-email').value;
+        const password = document.getElementById('login-password').value;
+        
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+        const user = users.find(u => u.email === email && u.password === password);
+        
+        if (user) {
+            currentUser = user;
+            localStorage.setItem('currentUser', JSON.stringify(user));
+            alert('Login realizado com sucesso!');
+            updateUI();
+            authModal.style.display = 'none';
+        } else {
+            alert('E-mail ou senha incorretos!');
+        }
+    }
+
+    // Função de Cadastro
+    function register() {
+        const name = document.getElementById('register-name').value;
+        const email = document.getElementById('register-email').value;
+        const password = document.getElementById('register-password').value;
+        
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+        
+        if (users.find(u => u.email === email)) {
+            alert('Este e-mail já está cadastrado!');
+            return;
+        }
+        
+        const newUser = { name, email, password, favorites: [] };
+        users.push(newUser);
+        localStorage.setItem('users', JSON.stringify(users));
+        
+        alert('Conta criada com sucesso! Faça login para continuar.');
+        showLogin();
+    }
+
+    // Função de Logout
+    function logout() {
+        currentUser = null;
+        localStorage.removeItem('currentUser');
+        updateUI();
+        userMenu.style.display = 'none';
+        alert('Logout realizado com sucesso!');
+    }
+
+    // Atualizar interface após login/logout
+    function updateUI() {
+        if (currentUser) {
+            loginBtn.innerHTML = `<i class="fas fa-user"></i> ${currentUser.name}`;
+            userNameSpan.textContent = currentUser.name;
+        } else {
+            loginBtn.innerHTML = `<i class="fas fa-user"></i> Entrar`;
+        }
+    }
+
+    // Verificar se já está logado ao carregar a página
+    window.addEventListener('load', () => {
+        const savedUser = localStorage.getItem('currentUser');
+        if (savedUser) {
+            currentUser = JSON.parse(savedUser);
+            updateUI();
+        }
+    });
+    </script>
+</body>
+</html>            text-shadow: 0 0 15px rgba(76, 175, 80, 0.7);
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+        
+        .subtitle {
+            color: #e0e0e0;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
         .security-info {
             background: rgba(0, 0, 0, 0.5);
             border-radius: 10px;
@@ -716,5 +1494,6 @@
     </script>
 </body>
 </html>
+
 
 
