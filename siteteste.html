@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Jogos - Site Seguro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            color: #fff;
+            min-height: 100vh;
+            background-attachment: fixed;
+        }
+        
+        header {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: rgba(0, 0, 0, 0.7);
+            border-bottom: 3px solid #4CAF50;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            color: #4CAF50;
+            text-shadow: 0 0 15px rgba(76, 175, 80, 0.7);
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+        
+        .subtitle {
+            color: #e0e0e0;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .security-info {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 900px;
+            border-left: 4px solid #4CAF50;
+        }
+        
+        .security-info h2 {
+            color: #4CAF50;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .security-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .security-card {
+            background: rgba(30, 30, 50, 0.7);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .security-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .security-icon {
+            font-size: 2.5rem;
+            color: #4CAF50;
+            margin-bottom: 1rem;
+        }
+        
+        .security-card h3 {
+            color: #4CAF50;
+            margin-bottom: 0.5rem;
+        }
+        
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem auto;
+            max-width: 1200px;
+            padding: 1rem;
+        }
+        
+        .game-card {
+            background: linear-gradient(145deg, #1e1e2e, #252535);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            border: 1px solid #33334d;
+        }
+        
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(76, 175, 80, 0.3);
+        }
+        
+        .game-image {
+            width: 100%;
+            height: 180px;
+            overflow: hidden;
+        }
+        
+        .game-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .game-card:hover .game-image img {
+            transform: scale(1.1);
+        }
+        
+        .game-content {
+            padding: 1.5rem;
+        }
+        
+        .game-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: #4CAF50;
+        }
+        
+        .game-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #a0a0a0;
+        }
+        
+        .game-description {
+            color: #c0c0c0;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .game-link {
+            display: block;
+            text-align: center;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(to right, #4CAF50, #66BB6A);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .game-link:hover {
+            background: linear-gradient(to right, #66BB6A, #81C784);
+            box-shadow: 0 0 15px rgba(76, 175, 80, 0.5);
+        }
+        
+        .safety-tips {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 900px;
+            border-left: 4px solid #FF9800;
+        }
+        
+        .safety-tips h2 {
+            color: #FF9800;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .tips-list {
+            list-style-type: none;
+        }
+        
+        .tips-list li {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+        
+        .tips-list li:before {
+            content: "✓";
+            color: #4CAF50;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 3rem 1rem;
+            margin-top: 5rem;
+            background: rgba(0, 0, 0, 0.7);
+            border-top: 3px solid #4CAF50;
+            color: #a0a0a0;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1.5rem 0;
+        }
+        
+        .footer-links a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .games-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .security-features {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .games-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><i class="fas fa-shield-alt"></i> PORTAL DE JOGOS SEGURO</h1>
+        <p class="subtitle">Diversão garantida com segurança para você e seus amigos!</p>
+    </header>
+    
+    <div class="security-info">
+        <h2>Por que este site é seguro?</h2>
+        <div class="security-features">
+            <div class="security-card">
+                <div class="security-icon">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <h3>Sem Downloads</h3>
+                <p>Todos os jogos rodam diretamente no navegador, não é necessário baixar nada.</p>
+            </div>
+            
+            <div class="security-card">
+                <div class="security-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Links Verificados</h3>
+                <p>Todos os links direcionam para sites confiáveis e conhecidos.</p>
+            </div>
+            
+            <div class="security-card">
+                <div class="security-icon">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <h3>Sem Cadastro</h3>
+                <p>Não é necessário criar conta ou fornecer dados pessoais.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="games-grid">
+        <!-- Jogo 1 -->
+        <div class="game-card">
+            <div class="game-image">
+                <img src="https://img.gamedistribution.com/3dd995a61b6b4f5d9135c46c693c6eeb-512x512.jpeg" alt="Subway Surfers">
+            </div>
+            <div class="game-content">
+                <h3 class="game-title">Subway Surfers</h3>
+                <div class="game-info">
+                    <span><i class="fas fa-gamepad"></i> Ação</span>
+                    <span><i class="fas fa-shield-alt"></i> Seguro</span>
+                </div>
+                <p class="game-description">Corra pelos trilhos do metrô desviando de trens e obstáculos nesse jogo viciante.</p>
+                <a href="https://poki.com/br/g/subway-surfers" class="game-link">Jogar Agora</a>
+            </div>
+        </div>
+        
+        <!-- Jogo 2 -->
+        <div class="game-card">
+            <div class="game-image">
+                <img src="https://img.gamedistribution.com/b9735b4e6a284f9483aeda4779451e20-512x512.jpeg" alt="Slither.io">
+            </div>
+            <div class="game-content">
+                <h3 class="game-title">Slither.io</h3>
+                <div class="game-info">
+                    <span><i class="fas fa-gamepad"></i> Estratégia</span>
+                    <span><i class="fas fa-shield-alt"></i> Seguro</span>
+                </div>
+                <p class="game-description">Controle uma cobrinha, coma bolinhas e derrote outros jogadores para crescer.</p>
+                <a href="https://slither.io/" class="game-link">Jogar Agora</a>
+            </div>
+        </div>
+        
+        <!-- Jogo 3 -->
+        <div class="game-card">
+            <div class="game-image">
+                <img src="https://img.gamedistribution.com/5a6d4f5b2e984e928a2d6d7da50b7f47-512x512.jpeg" alt="Minecraft Classic">
+            </div>
+            <div class="game-content">
+                <h3 class="game-title">Minecraft Classic</h3>
+                <div class="game-info">
+                    <span><i class="fas fa-gamepad"></i> Aventura</span>
+                    <span><i class="fas fa-shield-alt"></i> Seguro</span>
+                </div>
+                <p class="game-description">Construa e explore mundos infinitos com blocos neste jogo de sandbox.</p>
+                <a href="https://classic.minecraft.net/" class="game-link">Jogar Agora</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="safety-tips">
+        <h2><i class="fas fa-exclamation-triangle"></i> Dicas de Segurança Online</h2>
+        <ul class="tips-list">
+            <li>Nunca forneça informações pessoais em sites de jogos</li>
+            <li>Crie senhas fortes e diferentes para cada site</li>
+            <li>Mantenha seu navegador e antivírus atualizados</li>
+            <li>Desconfie de promoções ou ofertas muito boas para serem verdade</li>
+            <li>Use uma rede Wi-Fi segura para jogar online</li>
+            <li>Verifique se o site possui conexão HTTPS (cadeado verde na barra de endereços)</li>
+        </ul>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <h3>Portal de Jogos Seguro</h3>
+            <p>Um lugar divertido e seguro para jogar com seus amigos!</p>
+            
+            <div class="footer-links">
+                <a href="#">Política de Privacidade</a>
+                <a href="#">Termos de Uso</a>
+                <a href="#">Contato</a>
+            </div>
+            
+            <p><i class="fas fa-shield-alt"></i> Site 100% seguro - Não coletamos dados pessoais</p>
+            <p>&copy; 2023 Portal de Jogos Seguro. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
