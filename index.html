@@ -807,6 +807,38 @@
             color: #e63946;
         }
         
+        /* Status de amizade */
+        .friend-status-online {
+            color: #4ade80 !important;
+        }
+        
+        .friend-status-offline {
+            color: #9ca3af !important;
+        }
+        
+        .friend-status-ingame {
+            color: #fbbf24 !important;
+        }
+        
+        .friend-request {
+            background: rgba(79, 70, 229, 0.2) !important;
+            border: 1px solid #4f46e5 !important;
+        }
+        
+        .friend-request-actions {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+        
+        .btn-accept {
+            background: #4ade80 !important;
+        }
+        
+        .btn-deny {
+            background: #ef4444 !important;
+        }
+        
         @media (max-width: 768px) {
             .games-grid {
                 grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -991,6 +1023,13 @@
                     <!-- Lista de amigos será mostrada aqui -->
                 </div>
             </div>
+            
+            <div class="friends-list">
+                <h3>Solicitações de Amizade</h3>
+                <div class="friends-grid" id="friend-requests">
+                    <!-- Solicitações de amizade serão mostradas aqui -->
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1158,13 +1197,8 @@
     let currentUser = null;
     let currentGame = '';
     let currentFriend = null;
-    const allUsers = [
-        { id: 1, name: "João Silva", email: "joao@email.com", avatar: "J", games: 12, friends: 8 },
-        { id: 2, name: "Maria Santos", email: "maria@email.com", avatar: "M", games: 8, friends: 15 },
-        { id: 3, name: "Pedro Costa", email: "pedro@email.com", avatar: "P", games: 5, friends: 3 },
-        { id: 4, name: "Ana Oliveira", email: "ana@email.com", avatar: "A", games: 20, friends: 25 },
-        { id: 5, name: "Carlos Lima", email: "carlos@email.com", avatar: "C", games: 3, friends: 7 }
-    ];
+    let allUsers = [];
+    let friendRequests = [];
 
     // Elementos do DOM
     const authModal = document.getElementById('auth-modal');
@@ -1183,6 +1217,7 @@
     const friendsModal = document.getElementById('friends-modal');
     const friendsResults = document.getElementById('friends-results');
     const friendsList = document.getElementById('friends-list');
+    const friendRequestsList = document.getElementById('friend-requests');
     const navLinks = document.querySelectorAll('.nav-link');
     const contentSections = document.querySelectorAll('.content-section');
     const profileName = document.getElementById('profile-name');
@@ -1196,7 +1231,33 @@
         loadGames();
         initNavigation();
         checkLoginStatus();
+        initializeFriendsSystem();
     });
+
+    // Inicializar sistema de amigos
+    function initializeFriendsSystem() {
+        // Carregar usuários do sistema
+        const savedUsers = localStorage.getItem('gamezone_users');
+        if (savedUsers) {
+            allUsers = JSON.parse(savedUsers);
+        } else {
+            // Usuários padrão se não existirem
+            allUsers = [
+                { id: 1, name: "João Silva", email: "joao@email.com", avatar: "J", games: 12, friends: 8, password: "123456" },
+                { id: 2, name: "Maria Santos", email: "maria@email.com", avatar: "M", games: 8, friends: 15, password: "123456" },
+                { id: 3, name: "Pedro Costa", email: "pedro@email.com", avatar: "P", games: 5, friends: 3, password: "123456" },
+                { id: 4, name: "Ana Oliveira", email: "ana@email.com", avatar: "A", games: 20, friends: 25, password: "123456" },
+                { id: 5, name: "Carlos Lima", email: "carlos@email.com", avatar: "C", games: 3, friends: 7, password: "123456" }
+            ];
+            localStorage.setItem('gamezone_users', JSON.stringify(allUsers));
+        }
+        
+        // Carregar solicitações de amizade
+        const savedRequests = localStorage.getItem('gamezone_friend_requests');
+        if (savedRequests) {
+            friendRequests = JSON.parse(savedRequests);
+        }
+    }
 
     // Sistema de Navegação
     function initNavigation() {
@@ -1205,6 +1266,12 @@
                 e.preventDefault();
                 const section = this.getAttribute('data-section');
                 openSection(section);
+                
+                // Se for a seção de amigos, carregar a lista de amigos
+                if (section === 'friends' && currentUser) {
+                    loadFriendsList();
+                    loadFriendRequests();
+                }
             });
         });
     }
@@ -1341,14 +1408,23 @@
         }
     }
 
-    // Sistema de Amigos
+    // Sistema de Amigos - BUSCAR AMIGOS
     function searchFriends() {
+        if (!currentUser) {
+            alert('Faça login para buscar amigos!');
+            authModal.style.display = 'block';
+            showLogin();
+            return;
+        }
+        
         const searchTerm = document.getElementById('friend-search').value.toLowerCase().trim();
         friendsResults.innerHTML = '';
 
+        // Filtrar usuários (excluindo o usuário atual)
         const results = allUsers.filter(user => 
-            user.name.toLowerCase().includes(searchTerm) || 
-            user.email.toLowerCase().includes(searchTerm)
+            (user.name.toLowerCase().includes(searchTerm) || 
+            user.email.toLowerCase().includes(searchTerm)) &&
+            user.id !== currentUser.id
         );
 
         if (results.length === 0) {
@@ -1356,8 +1432,11 @@
             return;
         }
 
+        // Verificar status de amizade para cada usuário
         results.forEach(user => {
-            const isFriend = currentUser && Math.random() > 0.5; // Simulação
+            const isFriend = checkIfFriends(currentUser.id, user.id);
+            const hasPendingRequest = checkPendingRequest(currentUser.id, user.id);
+            
             const friendCard = document.createElement('div');
             friendCard.className = 'friend-card';
             friendCard.innerHTML = `
@@ -1368,6 +1447,10 @@
                     ${isFriend ? 
                         `<button class="friend-btn btn-remove" onclick="manageFriend(${user.id}, 'remove')">
                             <i class="fas fa-user-times"></i> Remover
+                         </button>` :
+                    hasPendingRequest ? 
+                        `<button class="friend-btn btn-message" onclick="manageFriend(${user.id}, 'cancel')">
+                            <i class="fas fa-clock"></i> Pendente
                          </button>` :
                         `<button class="friend-btn btn-add" onclick="manageFriend(${user.id}, 'add')">
                             <i class="fas fa-user-plus"></i> Adicionar
@@ -1382,38 +1465,128 @@
         });
     }
 
-    function manageFriend(userId, action) {
-        const user = allUsers.find(u => u.id === userId);
-        if (!user) return;
+    // Verificar se dois usuários são amigos
+    function checkIfFriends(userId1, userId2) {
+        const userFriends = JSON.parse(localStorage.getItem(`user_${userId1}_friends`)) || [];
+        return userFriends.includes(userId2);
+    }
 
-        currentFriend = user;
+    // Verificar se há solicitação pendente
+    function checkPendingRequest(fromUserId, toUserId) {
+        return friendRequests.some(request => 
+            request.from === fromUserId && request.to === toUserId && request.status === 'pending'
+        );
+    }
+
+    // Gerenciar amizade
+    function manageFriend(friendId, action) {
+        const friend = allUsers.find(u => u.id === friendId);
+        if (!friend) return;
+
+        currentFriend = friend;
 
         if (action === 'add') {
-            showNotification(`${user.name} adicionado aos amigos!`);
+            sendFriendRequest(currentUser.id, friendId);
         } else if (action === 'remove') {
-            showNotification(`${user.name} removido dos amigos.`);
+            removeFriend(currentUser.id, friendId);
+        } else if (action === 'cancel') {
+            cancelFriendRequest(currentUser.id, friendId);
         } else if (action === 'message') {
-            alert(`Sistema de mensagens para ${user.name} será implementado em breve!`);
+            alert(`Sistema de mensagens para ${friend.name} será implementado em breve!`);
         }
 
-        // Atualizar contador de amigos
-        if (currentUser) {
-            statsFriends.textContent = parseInt(statsFriends.textContent) + (action === 'add' ? 1 : -1);
+        // Recarregar resultados da busca
+        searchFriends();
+    }
+
+    // Enviar solicitação de amizade
+    function sendFriendRequest(fromUserId, toUserId) {
+        // Verificar se já existe uma solicitação
+        const existingRequest = friendRequests.find(request => 
+            request.from === fromUserId && request.to === toUserId && request.status === 'pending'
+        );
+        
+        if (existingRequest) {
+            alert('Solicitação de amizade já enviada!');
+            return;
+        }
+        
+        // Adicionar nova solicitação
+        friendRequests.push({
+            from: fromUserId,
+            to: toUserId,
+            status: 'pending',
+            date: new Date().toISOString()
+        });
+        
+        // Salvar no localStorage
+        localStorage.setItem('gamezone_friend_requests', JSON.stringify(friendRequests));
+        
+        showNotification(`Solicitação de amizade enviada para ${currentFriend.name}!`);
+    }
+
+    // Cancelar solicitação de amizade
+    function cancelFriendRequest(fromUserId, toUserId) {
+        const requestIndex = friendRequests.findIndex(request => 
+            request.from === fromUserId && request.to === toUserId && request.status === 'pending'
+        );
+        
+        if (requestIndex !== -1) {
+            friendRequests.splice(requestIndex, 1);
+            localStorage.setItem('gamezone_friend_requests', JSON.stringify(friendRequests));
+            showNotification(`Solicitação de amizade cancelada.`);
         }
     }
 
-    function loadFriendsList() {
-        friendsList.innerHTML = '';
-        // Simulação de amigos
-        const userFriends = allUsers.slice(0, 3); // Primeiros 3 como amigos
+    // Remover amigo
+    function removeFriend(userId, friendId) {
+        // Remover da lista de amigos do usuário
+        let userFriends = JSON.parse(localStorage.getItem(`user_${userId}_friends`)) || [];
+        userFriends = userFriends.filter(id => id !== friendId);
+        localStorage.setItem(`user_${userId}_friends`, JSON.stringify(userFriends));
+        
+        // Remover da lista de amigos do amigo
+        let friendFriends = JSON.parse(localStorage.getItem(`user_${friendId}_friends`)) || [];
+        friendFriends = friendFriends.filter(id => id !== userId);
+        localStorage.setItem(`user_${friendId}_friends`, JSON.stringify(friendFriends));
+        
+        showNotification(`${currentFriend.name} removido dos amigos.`);
+        
+        // Atualizar contador de amigos
+        if (currentUser) {
+            statsFriends.textContent = userFriends.length;
+            loadFriendsList();
+        }
+    }
 
-        userFriends.forEach(friend => {
+    // Carregar lista de amigos
+    function loadFriendsList() {
+        if (!currentUser) return;
+        
+        friendsList.innerHTML = '';
+        
+        // Obter IDs dos amigos do usuário atual
+        const userFriends = JSON.parse(localStorage.getItem(`user_${currentUser.id}_friends`)) || [];
+        
+        if (userFriends.length === 0) {
+            friendsList.innerHTML = '<p style="text-align: center; color: #a8dadc;">Você ainda não tem amigos. Adicione alguns!</p>';
+            return;
+        }
+        
+        // Obter dados completos dos amigos
+        const friendsData = allUsers.filter(user => userFriends.includes(user.id));
+        
+        friendsData.forEach(friend => {
+            const status = getRandomStatus(); // Simulação de status online
+            const statusClass = status === 'Online' ? 'friend-status-online' : 
+                               status === 'Jogando' ? 'friend-status-ingame' : 'friend-status-offline';
+            
             const friendCard = document.createElement('div');
             friendCard.className = 'friend-card';
             friendCard.innerHTML = `
                 <div class="friend-avatar">${friend.avatar}</div>
                 <div class="friend-name">${friend.name}</div>
-                <div class="friend-status">${friend.games} jogos • ${friend.friends} amigos</div>
+                <div class="friend-status ${statusClass}">${status}</div>
                 <div class="friend-actions">
                     <button class="friend-btn btn-message" onclick="manageFriend(${friend.id}, 'message')">
                         <i class="fas fa-envelope"></i> Mensagem
@@ -1425,6 +1598,95 @@
             `;
             friendsList.appendChild(friendCard);
         });
+        
+        // Atualizar contador de amigos
+        statsFriends.textContent = userFriends.length;
+    }
+
+    // Carregar solicitações de amizade
+    function loadFriendRequests() {
+        if (!currentUser) return;
+        
+        friendRequestsList.innerHTML = '';
+        
+        // Obter solicitações pendentes para o usuário atual
+        const pendingRequests = friendRequests.filter(request => 
+            request.to === currentUser.id && request.status === 'pending'
+        );
+        
+        if (pendingRequests.length === 0) {
+            friendRequestsList.innerHTML = '<p style="text-align: center; color: #a8dadc;">Nenhuma solicitação de amizade pendente.</p>';
+            return;
+        }
+        
+        // Obter dados dos remetentes
+        pendingRequests.forEach(request => {
+            const sender = allUsers.find(user => user.id === request.from);
+            if (!sender) return;
+            
+            const friendCard = document.createElement('div');
+            friendCard.className = 'friend-card friend-request';
+            friendCard.innerHTML = `
+                <div class="friend-avatar">${sender.avatar}</div>
+                <div class="friend-name">${sender.name}</div>
+                <div class="friend-status">Deseja ser seu amigo</div>
+                <div class="friend-request-actions">
+                    <button class="friend-btn btn-accept" onclick="respondToFriendRequest(${sender.id}, 'accept')">
+                        <i class="fas fa-check"></i> Aceitar
+                    </button>
+                    <button class="friend-btn btn-deny" onclick="respondToFriendRequest(${sender.id}, 'deny')">
+                        <i class="fas fa-times"></i> Recusar
+                    </button>
+                </div>
+            `;
+            friendRequestsList.appendChild(friendCard);
+        });
+    }
+
+    // Responder a solicitação de amizade
+    function respondToFriendRequest(senderId, response) {
+        // Encontrar a solicitação
+        const requestIndex = friendRequests.findIndex(request => 
+            request.from === senderId && request.to === currentUser.id && request.status === 'pending'
+        );
+        
+        if (requestIndex === -1) return;
+        
+        if (response === 'accept') {
+            // Adicionar como amigo mutuamente
+            addFriendToUser(currentUser.id, senderId);
+            addFriendToUser(senderId, currentUser.id);
+            
+            // Atualizar solicitação
+            friendRequests[requestIndex].status = 'accepted';
+            showNotification('Solicitação de amizade aceita!');
+        } else {
+            // Atualizar solicitação
+            friendRequests[requestIndex].status = 'denied';
+            showNotification('Solicitação de amizade recusada.');
+        }
+        
+        // Salvar alterações
+        localStorage.setItem('gamezone_friend_requests', JSON.stringify(friendRequests));
+        
+        // Recarregar listas
+        loadFriendsList();
+        loadFriendRequests();
+    }
+
+    // Adicionar amigo à lista de um usuário
+    function addFriendToUser(userId, friendId) {
+        let userFriends = JSON.parse(localStorage.getItem(`user_${userId}_friends`)) || [];
+        if (!userFriends.includes(friendId)) {
+            userFriends.push(friendId);
+            localStorage.setItem(`user_${userId}_friends`, JSON.stringify(userFriends));
+        }
+    }
+
+    // Gerar status aleatório (para simulação)
+    function getRandomStatus() {
+        const statuses = ['Online', 'Offline', 'Jogando'];
+        return statuses[Math.floor(Math.random() * statuses.length)];
     }
 
     // Sistema de Comentários
@@ -1505,10 +1767,29 @@
         if (currentUser) {
             profileName.textContent = currentUser.name;
             profileEmail.textContent = currentUser.email;
-            statsGames.textContent = Math.floor(Math.random() * 20) + 1;
-            statsComments.textContent = Math.floor(Math.random() * 10) + 1;
-            statsFriends.textContent = Math.floor(Math.random() * 15) + 1;
+            
+            // Carregar estatísticas reais
+            const userFriends = JSON.parse(localStorage.getItem(`user_${currentUser.id}_friends`)) || [];
+            const allComments = getAllCommentsCount();
+            
+            statsGames.textContent = currentUser.games || 0;
+            statsComments.textContent = allComments;
+            statsFriends.textContent = userFriends.length;
         }
+    }
+
+    // Contar todos os comentários do usuário
+    function getAllCommentsCount() {
+        let total = 0;
+        const games = ['subway surfers', 'slitherio', 'minecraft', 'among us', '8 ball pool', 'agario', 'monkey mart'];
+        
+        games.forEach(game => {
+            const comments = JSON.parse(localStorage.getItem(`comments-${game}`)) || [];
+            const userComments = comments.filter(comment => comment.author === currentUser.name);
+            total += userComments.length;
+        });
+        
+        return total;
     }
 
     function showLogin() {
@@ -1525,7 +1806,7 @@
         const email = document.getElementById('login-email').value;
         const password = document.getElementById('login-password').value;
         
-        const users = JSON.parse(localStorage.getItem('users')) || [];
+        const users = JSON.parse(localStorage.getItem('gamezone_users')) || [];
         const user = users.find(u => u.email === email && u.password === password);
         
         if (user) {
@@ -1546,25 +1827,26 @@
         const email = document.getElementById('register-email').value;
         const password = document.getElementById('register-password').value;
         
-        const users = JSON.parse(localStorage.getItem('users')) || [];
+        const users = JSON.parse(localStorage.getItem('gamezone_users')) || [];
         
         if (users.find(u => u.email === email)) {
             alert('Este e-mail já está cadastrado!');
             return;
         }
         
+        // Criar novo usuário
         const newUser = { 
+            id: Date.now(), // ID único baseado no timestamp
             name, 
             email, 
             password, 
-            favorites: [],
-            gamesPlayed: 0,
-            comments: 0,
+            avatar: name.charAt(0).toUpperCase(),
+            games: 0,
             friends: 0
         };
         
         users.push(newUser);
-        localStorage.setItem('users', JSON.stringify(users));
+        localStorage.setItem('gamezone_users', JSON.stringify(users));
         
         showNotification('Conta criada com sucesso! Faça login para continuar.');
         showLogin();
@@ -1583,6 +1865,11 @@
         statsGames.textContent = '0';
         statsComments.textContent = '0';
         statsFriends.textContent = '0';
+        
+        // Limpar resultados de busca de amigos
+        friendsResults.innerHTML = '';
+        friendsList.innerHTML = '';
+        friendRequestsList.innerHTML = '';
     }
 
     function updateUI() {
