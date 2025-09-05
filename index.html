@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -838,6 +838,85 @@
         .btn-deny {
             background: #ef4444 !important;
         }
+
+        /* Estilos do Modal de Discord */
+        .discord-modal {
+            display: none;
+            position: fixed;
+            z-index: 1003;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+        }
+        
+        .discord-content {
+            background: #1d2d44;
+            margin: 15% auto;
+            padding: 25px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            border: 2px solid #e63946;
+            position: relative;
+            text-align: center;
+        }
+        
+        .close-discord {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .close-discord:hover {
+            color: #e63946;
+        }
+        
+        .discord-content h2 {
+            color: #e63946;
+            margin-bottom: 15px;
+        }
+        
+        .discord-content p {
+            color: #a8dadc;
+            margin-bottom: 20px;
+        }
+        
+        .discord-btn {
+            padding: 12px 20px;
+            background: #5865F2; /* Cor do Discord */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .discord-btn:hover {
+            background: #7289DA;
+        }
+        
+        .dismiss-btn {
+            padding: 12px 20px;
+            background: transparent;
+            border: 1px solid #e63946;
+            color: #e63946;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin-left: 10px;
+        }
+        
+        .dismiss-btn:hover {
+            background: rgba(230, 57, 70, 0.2);
+        }
         
         @media (max-width: 768px) {
             .games-grid {
@@ -1141,7 +1220,7 @@
             </div>
             
             <div class="friend-card" id="friend-modal-card">
-                <!-- Informações do amigo serão mostradas aqui -->
+                <!-- Informações do amigo serão mostrados aqui -->
             </div>
             
             <div class="friend-actions" style="justify-content: center; margin-top: 20px;">
@@ -1155,6 +1234,17 @@
                     <i class="fas fa-envelope"></i> Mensagem
                 </button>
             </div>
+        </div>
+    </div>
+
+    <!-- Modal de Discord -->
+    <div id="discord-modal" class="discord-modal">
+        <div class="discord-content">
+            <span class="close-discord">&times;</span>
+            <h2>Junte-se ao Nosso Servidor no Discord!</h2>
+            <p>Conecte-se com a comunidade GameZone Host no servidor Ecstasy. Participe de conversas, encontre amigos para jogar e receba atualizações exclusivas!</p>
+            <a href="https://discord.gg/DxYFvDjbEQ" class="discord-btn" target="_blank"><i class="fab fa-discord"></i> Entrar no Ecstasy</a>
+            <button class="dismiss-btn" onclick="closeDiscordModal()">Continuar no Site</button>
         </div>
     </div>
 
@@ -1225,6 +1315,7 @@
     const statsGames = document.getElementById('stats-games');
     const statsComments = document.getElementById('stats-comments');
     const statsFriends = document.getElementById('stats-friends');
+    const discordModal = document.getElementById('discord-modal');
 
     // Inicialização
     document.addEventListener('DOMContentLoaded', function() {
@@ -1232,7 +1323,22 @@
         initNavigation();
         checkLoginStatus();
         initializeFriendsSystem();
+        showDiscordModal();
     });
+
+    // Mostrar modal do Discord
+    function showDiscordModal() {
+        // Verificar se o modal já foi mostrado na sessão atual
+        if (!sessionStorage.getItem('discordModalShown')) {
+            discordModal.style.display = 'block';
+            sessionStorage.setItem('discordModalShown', 'true');
+        }
+    }
+
+    // Fechar modal do Discord
+    function closeDiscordModal() {
+        discordModal.style.display = 'none';
+    }
 
     // Inicializar sistema de amigos
     function initializeFriendsSystem() {
@@ -1916,6 +2022,8 @@
         friendsModal.style.display = 'none';
     });
 
+    document.querySelector('.close-discord').addEventListener('click', closeDiscordModal);
+
     searchInput.addEventListener('input', searchGames);
     searchInput.addEventListener('keypress', function(e) {
         if (e.key === 'Enter') searchGames();
@@ -1925,6 +2033,7 @@
         if (event.target === authModal) authModal.style.display = 'none';
         if (event.target === commentsModal) commentsModal.style.display = 'none';
         if (event.target === friendsModal) friendsModal.style.display = 'none';
+        if (event.target === discordModal) closeDiscordModal();
         if (!event.target.matches('.login-btn') && !event.target.closest('.user-menu')) {
             userMenu.style.display = 'none';
         }
