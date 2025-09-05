@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -1462,6 +1462,46 @@
                 description: "Gerencie um mercado divertido com macacos clientes. Mantenha estoque e faça upgrades!",
                 link: "https://poki.com/br/g/monkey-mart",
                 category: "Gerenciamento"
+            },
+            {
+                name: "fireboy and watergirl 1 forest temple",
+                title: "Fireboy and Watergirl 1: Forest Temple",
+                image: "https://images.crazygames.com/games/fireboy-and-watergirl-forest-temple/cover-1594989874493.png",
+                description: "Controle Fireboy e Watergirl através do Templo da Floresta, resolvendo puzzles e coletando diamantes.",
+                link: "https://www.crazygames.com/game/fireboy-and-watergirl-the-forest-temple",
+                category: "Aventura"
+            },
+            {
+                name: "head soccer 2023",
+                title: "Head Soccer 2023",
+                image: "https://img.miniplay.com/kz2d6u7w/7u/head-soccer-2023_1920X1080-K1.jpg",
+                description: "Jogue futebol com cabeças grandes contra amigos ou IA neste jogo emocionante de 2023.",
+                link: "https://www.miniplay.com/game/head-soccer-2023",
+                category: "Esportes"
+            },
+            {
+                name: "deadshot io",
+                title: "Deadshot.io",
+                image: "https://images.crazygames.com/games/deadshot-io/cover-1701268153953.png",
+                description: "Participe de batalhas multiplayer em primeira pessoa neste shooter io rápido.",
+                link: "https://deadshot.io/",
+                category: "Ação"
+            },
+            {
+                name: "krunker io",
+                title: "Krunker.io",
+                image: "https://images.crazygames.com/krunker-io/20210421142410/krunker-io-cover?auto=format,compress&q=75&cs=strip",
+                description: "Lute em arenas pixeladas contra jogadores do mundo todo neste FPS online.",
+                link: "https://krunker.io/",
+                category: "Ação"
+            },
+            {
+                name: "gunblood",
+                title: "GunBlood",
+                image: "https://images.crazygames.com/gunblood.png",
+                description: "Teste seus reflexos em duelos do velho oeste contra pistoleiros habilidosos.",
+                link: "https://www.crazygames.com/game/gunblood",
+                category: "Ação"
             }
         ];
 
@@ -1887,7 +1927,7 @@
     // Contar todos os comentários do usuário
     function getAllCommentsCount() {
         let total = 0;
-        const games = ['subway surfers', 'slitherio', 'minecraft', 'among us', '8 ball pool', 'agario', 'monkey mart'];
+        const games = ['subway surfers', 'slitherio', 'minecraft', 'among us', '8 ball pool', 'agario', 'monkey mart', 'fireboy and watergirl 1 forest temple', 'head soccer 2023', 'deadshot io', 'krunker io', 'gunblood'];
         
         games.forEach(game => {
             const comments = JSON.parse(localStorage.getItem(`comments-${game}`)) || [];
